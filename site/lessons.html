@@ -1,0 +1,129 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Инструкция и образец</title><link rel="icon" href="assets/favicon.svg"><link rel="stylesheet" href="assets/style.css"></head><body><a class="skip" href="#main">Перейти к содержанию</a><header class="shell top"><a class="brand" href="index.html"><span class="emblem">ПП</span><span><strong>Практика / Методические материалы</strong><small>Готовое приложение C# Windows Forms и CSV · 216 часов · 30 индивидуальных вариантов</small></span></a><span class="version">Версия 1.0</span></header><div class="shell"><nav><a href="index.html" >Задание</a><a href="lessons.html" aria-current=page>Инструкция и образец</a><a href="areas.html" >Предметные области</a></nav><main id="main"><section class="hero"><p class="eyebrow">Учебный маршрут / 2026-2027</p><h1>Инструкция и образец</h1><p>Готовое приложение C# Windows Forms и CSV · 216 часов · 30 индивидуальных вариантов</p><span class="badge">Учебный комплект</span></section><div class="downloads"><a class="button" href="downloads/assignment.pdf">Задание PDF</a><a class="button" href="downloads/guide.pdf">Инструкция PDF</a><a class="button" href="downloads/report-template.md">Шаблон отчёта Markdown</a><a class="button" href="downloads/Program-fixed.cs">Program-fixed.cs</a><a class="button" href="downloads/ServiceDesk-source.zip">ServiceDesk-source.zip</a><a class="button" href="downloads/ServiceDesk-fixed-example.zip">ServiceDesk-fixed-example.zip</a><a class="button" href="downloads/variant-01.csv">variant-01.csv</a><a class="button" href="downloads/variant-02.csv">variant-02.csv</a><a class="button" href="downloads/variant-03.csv">variant-03.csv</a><a class="button" href="downloads/variant-04.csv">variant-04.csv</a><a class="button" href="downloads/variant-05.csv">variant-05.csv</a><a class="button" href="downloads/variant-06.csv">variant-06.csv</a><a class="button" href="downloads/variant-07.csv">variant-07.csv</a><a class="button" href="downloads/variant-08.csv">variant-08.csv</a><a class="button" href="downloads/variant-09.csv">variant-09.csv</a><a class="button" href="downloads/variant-10.csv">variant-10.csv</a><a class="button" href="downloads/variant-11.csv">variant-11.csv</a><a class="button" href="downloads/variant-12.csv">variant-12.csv</a><a class="button" href="downloads/variant-13.csv">variant-13.csv</a><a class="button" href="downloads/variant-14.csv">variant-14.csv</a><a class="button" href="downloads/variant-15.csv">variant-15.csv</a><a class="button" href="downloads/variant-16.csv">variant-16.csv</a><a class="button" href="downloads/variant-17.csv">variant-17.csv</a><a class="button" href="downloads/variant-18.csv">variant-18.csv</a><a class="button" href="downloads/variant-19.csv">variant-19.csv</a><a class="button" href="downloads/variant-20.csv">variant-20.csv</a><a class="button" href="downloads/variant-21.csv">variant-21.csv</a><a class="button" href="downloads/variant-22.csv">variant-22.csv</a><a class="button" href="downloads/variant-23.csv">variant-23.csv</a><a class="button" href="downloads/variant-24.csv">variant-24.csv</a><a class="button" href="downloads/variant-25.csv">variant-25.csv</a><a class="button" href="downloads/variant-26.csv">variant-26.csv</a><a class="button" href="downloads/variant-27.csv">variant-27.csv</a><a class="button" href="downloads/variant-28.csv">variant-28.csv</a><a class="button" href="downloads/variant-29.csv">variant-29.csv</a><a class="button" href="downloads/variant-30.csv">variant-30.csv</a><a class="button" href="downloads/demo.csv">demo.csv</a><a class="button" href="downloads/demo-valid.csv">demo-valid.csv</a></div><article class="lesson"><h2>Сервисный журнал учебного центра</h2><p>Отдельный пример: проектор и ноутбук, одна неполная запись принтера.</p></article><article class="lesson" id="page-1"><p class="eyebrow">Демонстрация: сервисный журнал учебного центра</p><h2>Подготовка и первая диагностика</h2><div class="blocks"><section class="block text"><h3>Рабочая копия</h3><p>Скачайте архив исходного проекта и CSV демонстрации. Распакуйте в отдельную папку; исходник сохраните без изменений для сравнения. Откройте ServiceDesk.csproj в Visual Studio и запустите Windows Forms приложение.</p></section><section class="block text"><h3>CSV-контракт</h3><p>CSV здесь — текст с заголовком Id;Item;Owner;Due;Status. Разделитель — точка с запятой, дата — dd.MM.yyyy, статус — Открыта или Завершена. Каждая следующая строка содержит ровно пять полей.</p></section><section class="block text"><h3>Воспроизведение D1</h3><p>Нажмите «Открыть CSV» и выберите demo.csv. Неполная строка 4 вызывает окно ошибки; корректные строки не отображаются. Запишите строку, сообщение и версию исходника.</p></section><section class="block text"><h3>Воспроизведение D2 и D3</h3><p>Создайте копию demo-valid.csv без дефектной строки и откройте её. Экспортируйте данные, затем откройте экспорт: формат расходится с исходным. Нажмите «Просрочено»: завершённая запись с прошедшей датой попадает в счётчик.</p></section><figure class="block screenshot"><h3>Реальная ошибка исходной версии</h3><img src="assets/screenshots/e30b4d3e01dbe5e6.png" alt="Ошибка импорта в исходном приложении"><figcaption>Исходный проект, сборка .NET 10 на Windows: неполная строка 4 прерывает импорт, окно остаётся пустым.</figcaption></figure></div></article><article class="lesson" id="page-2"><p class="eyebrow">D1: одна плохая запись не прерывает работу</p><h2>Исправление импорта</h2><div class="blocks"><section class="block text"><h3>Защита строки</h3><p>В CsvStore.Read обработайте каждую строку отдельно. Сначала Split с «;», затем проверьте Length == 5. Используйте int.TryParse и DateTime.TryParseExact с InvariantCulture. Пустое обязательное поле и неизвестный статус тоже дают предупреждение с номером строки. Продолжайте чтение оставшихся строк.</p></section><section class="block text"><h3>Сообщение оператору</h3><p>Верните вместе со списком записей перечень предупреждений; после загрузки покажите количество пропусков и подробности. Ошибку отсутствующего файла оставьте отдельной общей ошибкой. Для demo.csv ожидаются две загруженные записи и одно предупреждение.</p></section><section class="block text"><h3>Проверка</h3><p>Повторите импорт demo.csv. Убедитесь, что записи 101 и 102 видны, строка 4 пропущена, а сообщение указывает её номер. Затем отдельно проверьте неверный Id и дату.</p></section><figure class="block screenshot"><h3>Результат исправленного импорта</h3><img src="assets/screenshots/a337854d166b28c9.png" alt="Предупреждение о неполной строке поверх двух загруженных записей"><figcaption>Исправленная демонстрационная сборка: две корректные записи сохранены, строка 4 пропущена с предупреждением.</figcaption></figure><figure class="block screenshot"><h3>Две доступные записи</h3><img src="assets/screenshots/d74080cb70c6057f.png" alt="Исправленное приложение с двумя строками"><figcaption>После закрытия предупреждения таблица содержит проектор и ноутбук; нижняя строка показывает 2 загруженные и 1 пропущенную запись.</figcaption></figure></div></article><article class="lesson" id="page-3"><p class="eyebrow">D2 и D3: совместимость и бизнес-правило</p><h2>Исправление экспорта и счётчика</h2><div class="blocks"><section class="block text"><h3>Обратимый обмен</h3><p>В CsvStore.Write замените запятые на «;», заголовок на исходный и формат даты на dd.MM.yyyy с InvariantCulture. Запретите разделитель и перевод строки внутри полей либо реализуйте согласованное экранирование при чтении и записи. Для стенда достаточно явной проверки этих символов.</p></section><section class="block text"><h3>Повторное чтение</h3><p>Экспортируйте исправленно загруженные записи в новый файл. Откройте его в том же приложении и сравните Id, Item, Owner, Due, Status построчно. Ожидаются две записи без предупреждений.</p></section><section class="block text"><h3>Граница срока</h3><p>В CountOverdue добавьте условие Status != «Завершена»; дату сравнивайте по Date без времени. Запись с датой сегодня не просрочена. На демонстрационных данных исходный ошибочный счёт равен двум, исправленный — одному, если обе даты уже прошли.</p></section><figure class="block screenshot"><h3>Проверка просрочки</h3><img src="assets/screenshots/2a4b944efd783f96.png" alt="Исправленный счётчик просроченных заявок"><figcaption>В исправленной версии завершённая заявка не входит в счётчик: показано «Просрочено: 1».</figcaption></figure></div></article><article class="lesson" id="page-4"><p class="eyebrow">Завершение сопровождения</p><h2>Регрессия и пакет обновления</h2><div class="blocks"><section class="block text"><h3>Матрица проверок</h3><p>Составьте таблицу: входные данные, ожидаемое, фактическое, результат, скриншот. Проверьте правильный файл, неполную строку, неверный Id и дату, пустой набор, импорт после экспорта, завершённую запись и дату сегодня. После правки снова проверьте исходные сценарии.</p></section><section class="block text"><h3>Обновление</h3><p>Укажите номер версии 1.1, дату сборки, список D1–D3 и добавленное правило варианта. Сделайте резервную копию CSV. Пакет содержит исполняемые файлы и инструкцию; при откате восстановите предыдущую программу и копию CSV. Не удаляйте рабочие данные.</p></section><section class="block text"><h3>Передача пользователю</h3><p>Опишите кнопки «Открыть CSV», «Экспорт CSV», «Просрочено», значение предупреждений и порядок обращения при ошибке. Проверьте инструкцию по реальному экрану программы. В отчёт вставьте фактические снимки и результаты.</p></section></div></article><article class="lesson" id="page-5"><p class="eyebrow">Исходник проверенной демонстрации</p><h2>Полное демонстрационное решение: исходный код</h2><div class="blocks"><section class="block text"><h3>Как использовать образец</h3><p>Ниже приведён полный файл Program.cs исправленной версии. Откройте его вместе с ServiceDesk-fixed.csproj из архива. Сравните с исходным стендом по D1, D2 и D3; после этого применяйте изменения к своему варианту. Команда --self-test ПУТЬ_К_CSV выполняет импорт, экспорт и повторное чтение без окна и печатает фактические счётчики.</p></section><section class="block code"><h3>Program.cs версии 1.1</h3><pre>using System.Globalization;
+using System.Text;
+using System.Windows.Forms;
+
+namespace ServiceDeskFixed;
+
+internal record Ticket(int Id, string Item, string Owner, DateTime Due, string Status);
+internal record ReadResult(List&lt;Ticket&gt; Tickets, List&lt;string&gt; Warnings);
+
+internal static class CsvStore
+{
+    private const string Header = &quot;Id;Item;Owner;Due;Status&quot;;
+
+    public static ReadResult Read(string path)
+    {
+        var tickets = new List&lt;Ticket&gt;();
+        var warnings = new List&lt;string&gt;();
+        var lines = File.ReadAllLines(path, Encoding.UTF8);
+        if (lines.Length == 0 || lines[0].TrimStart(&#x27;\uFEFF&#x27;) != Header)
+            throw new InvalidDataException($&quot;Ожидается заголовок {Header}&quot;);
+        for (int index = 1; index &lt; lines.Length; index++)
+        {
+            if (string.IsNullOrWhiteSpace(lines[index])) continue;
+            var cells = lines[index].Split(&#x27;;&#x27;);
+            string? reason = null;
+            if (cells.Length != 5) reason = &quot;ожидается пять полей&quot;;
+            else if (!int.TryParse(cells[0], out _)) reason = &quot;неверный Id&quot;;
+            else if (string.IsNullOrWhiteSpace(cells[1]) || string.IsNullOrWhiteSpace(cells[2])) reason = &quot;пустое обязательное поле&quot;;
+            else if (!DateTime.TryParseExact(cells[3], &quot;dd.MM.yyyy&quot;, CultureInfo.InvariantCulture, DateTimeStyles.None, out _)) reason = &quot;неверная дата&quot;;
+            else if (cells[4] != &quot;Открыта&quot; &amp;&amp; cells[4] != &quot;Завершена&quot;) reason = &quot;неверный статус&quot;;
+            if (reason != null) { warnings.Add($&quot;Строка {index + 1}: {reason}&quot;); continue; }
+            tickets.Add(new Ticket(int.Parse(cells[0], CultureInfo.InvariantCulture), cells[1], cells[2],
+                DateTime.ParseExact(cells[3], &quot;dd.MM.yyyy&quot;, CultureInfo.InvariantCulture), cells[4]));
+        }
+        return new ReadResult(tickets, warnings);
+    }
+
+    public static void Write(string path, IEnumerable&lt;Ticket&gt; tickets)
+    {
+        var lines = new List&lt;string&gt; { Header };
+        foreach (var t in tickets)
+        {
+            if (new[] { t.Item, t.Owner, t.Status }.Any(value =&gt; value.Contains(&#x27;;&#x27;) || value.Contains(&#x27;\n&#x27;) || value.Contains(&#x27;\r&#x27;)))
+                throw new InvalidDataException(&quot;В поле нельзя использовать разделитель или перевод строки&quot;);
+            lines.Add($&quot;{t.Id};{t.Item};{t.Owner};{t.Due.ToString(&quot;dd.MM.yyyy&quot;, CultureInfo.InvariantCulture)};{t.Status}&quot;);
+        }
+        File.WriteAllLines(path, lines, Encoding.UTF8);
+    }
+
+    public static int CountOverdue(IEnumerable&lt;Ticket&gt; tickets, DateTime today) =&gt;
+        tickets.Count(t =&gt; t.Status != &quot;Завершена&quot; &amp;&amp; t.Due.Date &lt; today.Date);
+}
+
+internal sealed class MainForm : Form
+{
+    private readonly DataGridView grid = new() { Dock = DockStyle.Fill, ReadOnly = true, AutoGenerateColumns = true };
+    private readonly Label status = new() { Dock = DockStyle.Bottom, Height = 28, Text = &quot;Откройте CSV-файл&quot; };
+    private List&lt;Ticket&gt; tickets = new();
+
+    public MainForm(string? demoPath = null)
+    {
+        Text = &quot;Журнал заявок — версия 1.1&quot;;
+        Width = 960;
+        Height = 560;
+        var bar = new FlowLayoutPanel { Dock = DockStyle.Top, Height = 48 };
+        var open = new Button { Text = &quot;Открыть CSV&quot;, Width = 140, Height = 32 };
+        var save = new Button { Text = &quot;Экспорт CSV&quot;, Width = 140, Height = 32 };
+        var count = new Button { Text = &quot;Просрочено&quot;, Width = 140, Height = 32 };
+        open.Click += (_, _) =&gt; OpenCsv();
+        save.Click += (_, _) =&gt; SaveCsv();
+        count.Click += (_, _) =&gt; status.Text = $&quot;Просрочено: {CsvStore.CountOverdue(tickets, DateTime.Today)}&quot;;
+        bar.Controls.AddRange(new Control[] { open, save, count });
+        Controls.Add(grid);
+        Controls.Add(status);
+        Controls.Add(bar);
+        if (demoPath != null) Shown += (_, _) =&gt; LoadCsv(demoPath);
+    }
+
+    private void OpenCsv()
+    {
+        using var dialog = new OpenFileDialog { Filter = &quot;CSV (*.csv)|*.csv&quot; };
+        if (dialog.ShowDialog() != DialogResult.OK) return;
+        LoadCsv(dialog.FileName);
+    }
+
+    private void LoadCsv(string path)
+    {
+        try
+        {
+            var result = CsvStore.Read(path);
+            tickets = result.Tickets;
+            grid.DataSource = tickets.ToList();
+            status.Text = $&quot;Загружено: {tickets.Count}; пропущено: {result.Warnings.Count}&quot;;
+            if (result.Warnings.Count &gt; 0) MessageBox.Show(string.Join(Environment.NewLine, result.Warnings), &quot;Предупреждения импорта&quot;);
+        }
+        catch (Exception ex) { MessageBox.Show(ex.Message, &quot;Ошибка импорта&quot;); }
+    }
+
+    private void SaveCsv()
+    {
+        using var dialog = new SaveFileDialog { Filter = &quot;CSV (*.csv)|*.csv&quot;, FileName = &quot;export.csv&quot; };
+        if (dialog.ShowDialog() != DialogResult.OK) return;
+        try { CsvStore.Write(dialog.FileName, tickets); status.Text = &quot;Файл сохранён&quot;; }
+        catch (Exception ex) { MessageBox.Show(ex.Message, &quot;Ошибка экспорта&quot;); }
+    }
+
+    [STAThread]
+    private static void Main(string[] args)
+    {
+        if (args.Length == 2 &amp;&amp; args[0] == &quot;--self-test&quot;)
+        {
+            var result = CsvStore.Read(args[1]);
+            var target = Path.GetTempFileName();
+            try
+            {
+                CsvStore.Write(target, result.Tickets);
+                var roundtrip = CsvStore.Read(target);
+                if (roundtrip.Warnings.Count != 0 || !result.Tickets.SequenceEqual(roundtrip.Tickets))
+                    throw new InvalidOperationException(&quot;Повторный импорт не совпал&quot;);
+                Console.WriteLine($&quot;tickets={result.Tickets.Count}; warnings={result.Warnings.Count}; overdue={CsvStore.CountOverdue(result.Tickets, DateTime.Today)}&quot;);
+                foreach (var warning in result.Warnings) Console.WriteLine(warning);
+            }
+            finally { File.Delete(target); }
+            return;
+        }
+        ApplicationConfiguration.Initialize();
+        Application.Run(new MainForm(args.Length == 2 &amp;&amp; args[0] == &quot;--demo&quot; ? args[1] : null));
+    }
+}</pre></section></div></article></main><footer><span>ПМ.04 Сопровождение и обслуживание программного обеспечения компьютерных систем</span><span>Единый учебный комплект</span></footer></div></body></html>
