@@ -1,151 +1,283 @@
-# Отчёт — ПП.04.01 «Сопровождение и обслуживание программного обеспечения компьютерных систем»
+<div lang="ru" style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">
 
-ФИО: ____________________
+<h1 style="font-family:'Times New Roman';color:#000;font-size:16pt;text-align:center;line-height:1.5;page-break-after:avoid;">ОТЧЁТ — ПП.04.01 «СОПРОВОЖДЕНИЕ И ОБСЛУЖИВАНИЕ ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ КОМПЬЮТЕРНЫХ СИСТЕМ»</h1>
 
-Группа: ____________________
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">ФИО: ____________________</p>
 
-Вариант и предметная область: ____________________
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Группа: ____________________</p>
 
-## Сведения о работе
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Вариант: ____________________</p>
 
-ФИО, группа, вариант, предметная область, дата и версия программы. Ссылка на репозиторий проекта: ________. Заполняет студент.
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Предметная область: ____________________</p>
 
-_Заполните по результатам своей работы._
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Дата: ____________________</p>
+
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Версия программы: ____________________</p>
 
-## Сборка приложения до CSV
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Ссылка на репозиторий проекта: ____________________</p>
 
-Укажите путь к стартовому проекту, результат сборки, две встроенные записи и расчёт просрочки. CSV на этом этапе ещё не подключён.
+<h2 style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;page-break-after:avoid;">Сведения о работе</h2>
 
-_Заполните по результатам своей работы._
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">ФИО, группа, вариант, предметная область, дата и версия программы. Ссылка на репозиторий проекта: ________. Заполняет студент.</p>
 
-Рисунок 1 — Окно стартового приложения
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Заполните по результатам своей работы.</p>
 
-_Место для вашего скриншота._
+<h2 style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;page-break-after:avoid;">Сборка приложения до CSV</h2>
 
-Рисунок 2 — Встроенные тестовые записи
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Укажите путь к стартовому проекту, результат сборки, две встроенные записи и расчёт просрочки. CSV на этом этапе ещё не подключён.</p>
 
-_Место для вашего скриншота._
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Заполните по результатам своей работы.</p>
 
-Рисунок 3 — Результат кнопки «Просрочено»
-
-_Место для вашего скриншота._
-
-## Подключение CSV
-
-Укажите выбранное индивидуальное задание и ссылку на него, состав CSV, внесённые изменения интерфейса и первый результат импорта.
-
-_Заполните по результатам своей работы._
-
-Рисунок 4 — Исходный CSV в редакторе
-
-_Место для вашего скриншота._
-
-Рисунок 5 — Первый импорт CSV
-
-_Место для вашего скриншота._
-
-## Диагностика D1–D3
-
-Для каждого дефекта: вход, действия, ожидание, фактический результат и причина.
-
-_Заполните по результатам своей работы._
-
-Рисунок 6 — Воспроизведение D1
-
-_Место для вашего скриншота._
-
-Рисунок 7 — Воспроизведение D2
-
-_Место для вашего скриншота._
-
-Рисунок 8 — Воспроизведение D3
-
-_Место для вашего скриншота._
-
-## Исправления
-
-Перечислите изменённые файлы и обоснуйте каждое исправление. Фактические результаты не заполняются заранее.
-
-_Заполните по результатам своей работы._
-
-Рисунок 9 — Исправленный импорт
-
-_Место для вашего скриншота._
-
-Рисунок 10 — Исправленный экспорт
-
-_Место для вашего скриншота._
-
-Рисунок 11 — Исправленный счётчик
-
-_Место для вашего скриншота._
-
-## Проверки
-
-Таблица входов, ожидаемых и фактических результатов: корректный файл, неполная строка, неверный Id, дата, пустой файл, повторный импорт экспорта, завершённая заявка, дата сегодня и особое правило.
-
-_Заполните по результатам своей работы._
-
-Рисунок 12 — Корректный импорт
-
-_Место для вашего скриншота._
-
-Рисунок 13 — Предупреждение с номером строки
-
-_Место для вашего скриншота._
-
-Рисунок 14 — Некорректный Id
-
-_Место для вашего скриншота._
-
-Рисунок 15 — Некорректная дата
-
-_Место для вашего скриншота._
-
-Рисунок 16 — Пустой файл
-
-_Место для вашего скриншота._
-
-Рисунок 17 — Экспорт
-
-_Место для вашего скриншота._
-
-Рисунок 18 — Повторный импорт
-
-_Место для вашего скриншота._
-
-Рисунок 19 — Фильтр завершённых
-
-_Место для вашего скриншота._
-
-Рисунок 20 — Дата сегодня
-
-_Место для вашего скриншота._
-
-Рисунок 21 — Проверка особого правила
-
-_Место для вашего скриншота._
-
-## Обновление и пользовательская инструкция
-
-Версия, состав пакета, резервная копия, порядок обновления, откат, инструкция оператору.
-
-_Заполните по результатам своей работы._
-
-Рисунок 22 — Пакет обновления
-
-_Место для вашего скриншота._
-
-Рисунок 23 — Запуск после обновления
-
-_Место для вашего скриншота._
-
-Рисунок 24 — Проверка отката
-
-_Место для вашего скриншота._
-
-## Вывод
-
-Что реально проверено, какие ограничения остались и где лежат подтверждения.
-
-_Заполните по результатам своей работы._
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 1 — Окно стартового приложения</p>
+</div>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 2 — Встроенные тестовые записи</p>
+</div>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 3 — Результат кнопки «Просрочено»</p>
+</div>
+
+<h2 style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;page-break-after:avoid;">Подключение CSV</h2>
+
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Укажите выбранное индивидуальное задание и ссылку на него, состав CSV, внесённые изменения интерфейса и первый результат импорта.</p>
+
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Заполните по результатам своей работы.</p>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 4 — Исходный CSV в редакторе</p>
+</div>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 5 — Первый импорт CSV</p>
+</div>
+
+<h2 style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;page-break-after:avoid;">Диагностика D1–D3</h2>
+
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Для каждого дефекта: вход, действия, ожидание, фактический результат и причина.</p>
+
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Заполните по результатам своей работы.</p>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 6 — Воспроизведение D1</p>
+</div>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 7 — Воспроизведение D2</p>
+</div>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 8 — Воспроизведение D3</p>
+</div>
+
+<h2 style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;page-break-after:avoid;">Исправления</h2>
+
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Перечислите изменённые файлы и обоснуйте каждое исправление. Фактические результаты не заполняются заранее.</p>
+
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Заполните по результатам своей работы.</p>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 9 — Исправленный импорт</p>
+</div>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 10 — Исправленный экспорт</p>
+</div>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 11 — Исправленный счётчик</p>
+</div>
+
+<h2 style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;page-break-after:avoid;">Проверки</h2>
+
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Таблица входов, ожидаемых и фактических результатов: корректный файл, неполная строка, неверный Id, дата, пустой файл, повторный импорт экспорта, завершённая заявка, дата сегодня и особое правило.</p>
+
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Заполните по результатам своей работы.</p>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 12 — Корректный импорт</p>
+</div>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 13 — Предупреждение с номером строки</p>
+</div>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 14 — Некорректный Id</p>
+</div>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 15 — Некорректная дата</p>
+</div>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 16 — Пустой файл</p>
+</div>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 17 — Экспорт</p>
+</div>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 18 — Повторный импорт</p>
+</div>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 19 — Фильтр завершённых</p>
+</div>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 20 — Дата сегодня</p>
+</div>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 21 — Проверка особого правила</p>
+</div>
+
+<h2 style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;page-break-after:avoid;">Обновление и пользовательская инструкция</h2>
+
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Версия, состав пакета, резервная копия, порядок обновления, откат, инструкция оператору.</p>
+
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Заполните по результатам своей работы.</p>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 22 — Пакет обновления</p>
+</div>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 23 — Запуск после обновления</p>
+</div>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 24 — Проверка отката</p>
+</div>
+
+<h2 style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;page-break-after:avoid;">Вывод</h2>
+
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Что реально проверено, какие ограничения остались и где лежат подтверждения.</p>
+
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Заполните по результатам своей работы.</p>
+
+</div>
