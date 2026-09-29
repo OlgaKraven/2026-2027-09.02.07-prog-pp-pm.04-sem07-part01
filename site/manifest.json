@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "fingerprint": "79242c4f63253061d033d7d19e19c5e827cb0fcbdcb2eb6e698cd8df1ef7bd93",
+  "fingerprint": "05ea83a9d3eaa958ee202ca494c17fbfa0002d91bc4fc5a675292d3cc6d94925",
   "release": true,
   "files": {
-    "areas.html": "fa6d9568f57a445d3a79ecebb7013d7c72c881728ff033beb5a664e2e06277d0",
+    "areas.html": "d82ed2d8cab2bc25f9df1e9ce3ff710c6466664ecb0f6867fc081d135d405195",
     "assets/favicon.svg": "4d11c3923a0c231e244ba64f5714e45fd998f411b1e0ffa679dfc7979c59fe1d",
     "assets/screenshots/2a4b944efd783f96.png": "925e577fa14ca27edc72131671eb177d958fd848c64e50d85cc21253fe301cc7",
     "assets/screenshots/4aa9cc308daa79d2.png": "2ef54edf646e03cb3cf49dbeaaab9d3c910fb180a260724bc1efc03222bf1f0e",
@@ -12,10 +12,10 @@
     "assets/screenshots/d74080cb70c6057f.png": "8f0a44f8228af2128a562fc0bfdd32c7661841be0d379155795ed5cba9782926",
     "assets/screenshots/e30b4d3e01dbe5e6.png": "256bcf21f5042b98e507a74a5eb0648b62a681ae6acfaf779baacaa662d850d9",
     "assets/style.css": "3b26fc680fcf2de668d33b3d7986be3091c3b1f86adbe91eb3099ebeb994fecf",
-    "downloads/assignment.pdf": "fb442afdf528d7adf11e31069af52a3fcffdb9e566998904680318cee0c24833",
+    "downloads/assignment.pdf": "c3652e5a059304e4eb3fbd9214c92540a44c35790a37961b3e36ffe0f41e55c1",
     "downloads/demo-valid.csv": "ed569842f59da3b9453654d32612f292c0c49204e8154551710e532c7553b085",
     "downloads/demo.csv": "7880c26022053b276b3b8b486330ecee9743aac6cb73bf91522896e3d7cecd1e",
-    "downloads/guide.pdf": "451b0f70e1f367fb34abbbf4a90dcd24e563f445af1e4cb503a842c14cabcc57",
+    "downloads/guide.pdf": "e9f6d40f9a03603cb006f6131656a9b1ccef975750ed2fc7f1aa46e7169bc517",
     "downloads/Program-fixed.cs": "66c98f1eacc88f7fa7233af8a7485d07921ad56bde13d751b29f072c04c65e0f",
     "downloads/Program-starter.cs": "3e2a1b3df3eec5aa47308cca8cea95b75c23ad248b7e09ea2b86ccd87f213d06",
     "downloads/report-template.md": "a2e5ad616c9f94e5cde7d285033070162a1e863ee5e67e6283f32ca32b58d9de",
@@ -52,7 +52,7 @@
     "downloads/variant-28.csv": "c676adeb60102cc8408b9a4123d7afbf6f6ef7e5cc16818e38a380f9f1d94cd9",
     "downloads/variant-29.csv": "adde4a327b4d914aadd3094856ef02ea1ffed788654d15c6e40a3d0bed177bae",
     "downloads/variant-30.csv": "18b0cabcea9ce5be1bb64d320b53d3449e521d68c4c968e90050dda29599956f",
-    "index.html": "335936041cd7cd1263a8eb8ca9d0dd605767961be7e906970ded363a9c3778e6",
-    "lessons.html": "f94f7234b1959af6b24fca2af1668d02cae362b576fd0d7ae730fbfd9a219db8"
+    "index.html": "6426f6809ed18709547a2a91ba9d6d8cae96c248863bb98d89dbf9289a987579",
+    "lessons.html": "9d7ed4911a97aae05c014365d0a1209bb40d20d05c7182e1ab035ab93632c90e"
   }
 }
