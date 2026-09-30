@@ -24,7 +24,7 @@
 
 <h2 style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;page-break-after:avoid;">Сборка приложения до CSV</h2>
 
-<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Укажите путь к стартовому проекту, результат сборки, две встроенные записи и расчёт просрочки. CSV на этом этапе ещё не подключён.</p>
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Укажите результат сборки WPF-проекта, действие кнопки «Тестовые данные», две встроенные записи, дату проверки и результат «Просрочено». CSV на этом этапе ещё не подключён.</p>
 
 <p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Заполните по результатам своей работы.</p>
 
@@ -57,7 +57,7 @@
 
 <h2 style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;page-break-after:avoid;">Подключение CSV</h2>
 
-<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Укажите выбранное индивидуальное задание и ссылку на него, состав CSV, внесённые изменения интерфейса и первый результат импорта.</p>
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Укажите ссылку на своё индивидуальное задание, состав CSV, изменения в MainWindow.xaml и MainWindow.xaml.cs и первый результат импорта.</p>
 
 <p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Заполните по результатам своей работы.</p>
 

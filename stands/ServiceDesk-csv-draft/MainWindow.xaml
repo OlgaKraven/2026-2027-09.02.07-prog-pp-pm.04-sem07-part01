@@ -1,0 +1,27 @@
+<Window x:Class="ServiceDeskWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Журнал заявок — CSV-интеграция" Width="960" Height="560">
+  <Grid Margin="12">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+      <Button Content="Открыть CSV" Width="140" Height="32" Margin="0,0,8,0" Click="OpenCsv_Click" />
+      <Button Content="Экспорт CSV" Width="140" Height="32" Margin="0,0,8,0" Click="SaveCsv_Click" />
+      <Button Content="Просрочено" Width="140" Height="32" Click="CountOverdue_Click" />
+    </StackPanel>
+    <DataGrid x:Name="TicketsGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+        <DataGridTextColumn Header="Объект" Binding="{Binding Item}" Width="*" />
+        <DataGridTextColumn Header="Ответственный" Binding="{Binding Owner}" Width="*" />
+        <DataGridTextColumn Header="Срок" Binding="{Binding Due, StringFormat=dd.MM.yyyy}" Width="130" />
+        <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="130" />
+      </DataGrid.Columns>
+    </DataGrid>
+    <TextBlock x:Name="StatusText" Grid.Row="2" Margin="0,10,0,0" Text="Откройте CSV-файл" />
+  </Grid>
+</Window>
