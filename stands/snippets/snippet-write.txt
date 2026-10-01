@@ -1,0 +1,11 @@
+    public static void Write(string path, IEnumerable<Ticket> tickets)
+    {
+        var lines = new List<string> { Header };
+        foreach (var t in tickets)
+        {
+            if (new[] { t.Item, t.Owner, t.Status }.Any(value => value.Contains(';') || value.Contains('\n') || value.Contains('\r')))
+                throw new InvalidDataException("В поле нельзя использовать разделитель или перевод строки");
+            lines.Add($"{t.Id};{t.Item};{t.Owner};{t.Due.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture)};{t.Status}");
+        }
+        File.WriteAllLines(path, lines, Encoding.UTF8);
+    }

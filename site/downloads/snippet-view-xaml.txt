@@ -1,0 +1,8 @@
+    <WrapPanel Margin="0,0,0,10">
+      <Button Content="Тестовые данные" Width="140" Height="32" Margin="0,0,8,0" Click="LoadTestData_Click" />
+      <Button Content="Открыть CSV" Width="140" Height="32" Margin="0,0,8,0" Click="OpenCsv_Click" />
+      <Button Content="Экспорт CSV" Width="140" Height="32" Margin="0,0,8,0" Click="SaveCsv_Click" />
+      <Button Content="Просрочено" Width="140" Height="32" Click="CountOverdue_Click" />
+      <Button Content="Для оператора" Width="140" Height="32" Margin="8,0,8,0" Click="SelectForOperator_Click" />
+      <Button Content="Все записи" Width="140" Height="32" Click="ShowAll_Click" />
+    </WrapPanel>

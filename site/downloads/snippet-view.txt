@@ -1,0 +1,6 @@
+internal static class OperatorView
+{
+    public static List<Ticket> Select(IEnumerable<Ticket> rows, DateTime today) =>
+        rows.Where(t => t.Status == "Открыта" && t.Due.Date < today.Date)
+            .OrderBy(t => t.Due).ThenBy(t => t.Id).ToList();
+}

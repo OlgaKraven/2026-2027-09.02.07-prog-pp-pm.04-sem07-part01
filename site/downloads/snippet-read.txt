@@ -1,0 +1,25 @@
+    private const string Header = "Id;Item;Owner;Due;Status";
+
+    public static ReadResult Read(string path)
+    {
+        var tickets = new List<Ticket>();
+        var warnings = new List<string>();
+        var lines = File.ReadAllLines(path, Encoding.UTF8);
+        if (lines.Length == 0 || lines[0].TrimStart('\uFEFF') != Header)
+            throw new InvalidDataException($"Ожидается заголовок {Header}");
+        for (int index = 1; index < lines.Length; index++)
+        {
+            if (string.IsNullOrWhiteSpace(lines[index])) continue;
+            var cells = lines[index].Split(';');
+            string? reason = null;
+            if (cells.Length != 5) reason = "ожидается пять полей";
+            else if (!int.TryParse(cells[0], out _)) reason = "неверный Id";
+            else if (string.IsNullOrWhiteSpace(cells[1]) || string.IsNullOrWhiteSpace(cells[2])) reason = "пустое обязательное поле";
+            else if (!DateTime.TryParseExact(cells[3], "dd.MM.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _)) reason = "неверная дата";
+            else if (cells[4] != "Открыта" && cells[4] != "Завершена") reason = "неверный статус";
+            if (reason != null) { warnings.Add($"Строка {index + 1}: {reason}"); continue; }
+            tickets.Add(new Ticket(int.Parse(cells[0], CultureInfo.InvariantCulture), cells[1], cells[2],
+                DateTime.ParseExact(cells[3], "dd.MM.yyyy", CultureInfo.InvariantCulture), cells[4]));
+        }
+        return new ReadResult(tickets, warnings);
+    }

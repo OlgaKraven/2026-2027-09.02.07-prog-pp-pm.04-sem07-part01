@@ -8,6 +8,13 @@ public partial class App : Application
     protected override void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
+        if (e.Args.Length == 1 && e.Args[0] == "--test-built-in")
+        {
+            var rows = TestData.Create(DateTime.Today);
+            Console.WriteLine($"test-records={rows.Count}; overdue={CsvStore.CountOverdue(rows, DateTime.Today)}");
+            Shutdown();
+            return;
+        }
         if (e.Args.Length == 2 && e.Args[0] == "--self-test")
         {
             var result = CsvStore.Read(e.Args[1]);

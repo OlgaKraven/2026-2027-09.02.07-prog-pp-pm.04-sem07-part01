@@ -280,4 +280,28 @@
 
 <p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Заполните по результатам своей работы.</p>
 
+<h2 style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;page-break-after:avoid;">Предметный отбор и сохранность полного списка</h2>
+
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Укажите правило варианта, контрольную дату, ожидаемый и фактический порядок Id, результат кнопки «Все записи» и повторного чтения экспорта.</p>
+
+<p style="font-family:'Times New Roman';color:#000;font-size:14pt;text-align:justify;line-height:1.5;text-indent:1.25cm;">Заполните по результатам своей работы.</p>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 25 — Предметная выборка для оператора</p>
+</div>
+
+<div style="page-break-inside:avoid;break-inside:avoid;">
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;width:100%;page-break-after:avoid;">
+<tr>
+<td height="220" style="border:1px solid #000;height:220px;text-align:center;vertical-align:middle;font-family:'Times New Roman';color:#000;font-size:12pt;line-height:1;text-indent:0;">Вставьте скриншот</td>
+</tr>
+</table>
+<p style="font-family:'Times New Roman';color:#000;font-size:12pt;text-align:center;line-height:1;text-indent:0;page-break-before:avoid;">Рисунок 26 — Полный список после восстановления просмотра</p>
+</div>
+
 </div>

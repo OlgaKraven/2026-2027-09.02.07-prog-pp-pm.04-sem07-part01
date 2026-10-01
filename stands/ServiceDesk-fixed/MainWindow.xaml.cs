@@ -9,6 +9,18 @@ namespace ServiceDeskWpf;
 internal record Ticket(int Id, string Item, string Owner, DateTime Due, string Status);
 internal record ReadResult(List<Ticket> Tickets, List<string> Warnings);
 
+internal static class TestData
+{
+    public static List<Ticket> Create(DateTime today) =>
+    [
+        new Ticket(101, "Проектор", "Ирина", today.AddDays(-2), "Открыта"),
+        new Ticket(102, "Ноутбук", "Павел", today.AddDays(-1), "Завершена")
+    ];
+
+    public static int CountOverdue(IEnumerable<Ticket> tickets, DateTime today) =>
+        tickets.Count(t => t.Status != "Завершена" && t.Due.Date < today.Date);
+}
+
 internal static class CsvStore
 {
     private const string Header = "Id;Item;Owner;Due;Status";
@@ -53,6 +65,13 @@ internal static class CsvStore
         tickets.Count(t => t.Status != "Завершена" && t.Due.Date < today.Date);
 }
 
+internal static class OperatorView
+{
+    public static List<Ticket> Select(IEnumerable<Ticket> rows, DateTime today) =>
+        rows.Where(t => t.Status == "Открыта" && t.Due.Date < today.Date)
+            .OrderBy(t => t.Due).ThenBy(t => t.Id).ToList();
+}
+
 public partial class MainWindow : Window
 {
     private List<Ticket> tickets = new();
@@ -63,6 +82,15 @@ public partial class MainWindow : Window
         if (demoPath != null) Loaded += (_, _) =>
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.ApplicationIdle,
                 new Action(() => LoadCsv(demoPath)));
+    }
+
+    private void LoadTestData_Click(object sender, RoutedEventArgs e) => LoadTestData();
+
+    private void LoadTestData()
+    {
+        tickets = TestData.Create(DateTime.Today);
+        TicketsGrid.ItemsSource = tickets.ToList();
+        StatusText.Text = $"Тестовых записей: {tickets.Count}";
     }
 
     private void OpenCsv_Click(object sender, RoutedEventArgs e)
@@ -91,6 +119,19 @@ public partial class MainWindow : Window
         if (dialog.ShowDialog() != true) return;
         try { CsvStore.Write(dialog.FileName, tickets); StatusText.Text = "Файл сохранён"; }
         catch (Exception ex) { MessageBox.Show(ex.Message, "Ошибка экспорта"); }
+    }
+
+    private void SelectForOperator_Click(object sender, RoutedEventArgs e)
+    {
+        var selected = OperatorView.Select(tickets, DateTime.Today);
+        TicketsGrid.ItemsSource = selected;
+        StatusText.Text = $"Для оператора: {selected.Count}; всего: {tickets.Count}";
+    }
+
+    private void ShowAll_Click(object sender, RoutedEventArgs e)
+    {
+        TicketsGrid.ItemsSource = tickets.ToList();
+        StatusText.Text = $"Все записи: {tickets.Count}";
     }
 
     private void CountOverdue_Click(object sender, RoutedEventArgs e) =>

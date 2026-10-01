@@ -1,0 +1,12 @@
+    private void SelectForOperator_Click(object sender, RoutedEventArgs e)
+    {
+        var selected = OperatorView.Select(tickets, DateTime.Today);
+        TicketsGrid.ItemsSource = selected;
+        StatusText.Text = $"Для оператора: {selected.Count}; всего: {tickets.Count}";
+    }
+
+    private void ShowAll_Click(object sender, RoutedEventArgs e)
+    {
+        TicketsGrid.ItemsSource = tickets.ToList();
+        StatusText.Text = $"Все записи: {tickets.Count}";
+    }

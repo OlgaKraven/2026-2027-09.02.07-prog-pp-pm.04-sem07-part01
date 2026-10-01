@@ -1,0 +1,2 @@
+    public static int CountOverdue(IEnumerable<Ticket> tickets, DateTime today) =>
+        tickets.Count(t => t.Status != "Завершена" && t.Due.Date < today.Date);

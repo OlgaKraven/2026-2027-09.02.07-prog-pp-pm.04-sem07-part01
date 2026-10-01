@@ -1,0 +1,13 @@
+    private void LoadCsv(string path)
+    {
+        try
+        {
+            var result = CsvStore.Read(path);
+            tickets = result.Tickets;
+            TicketsGrid.ItemsSource = tickets.ToList();
+            StatusText.Text = $"Загружено: {tickets.Count}; пропущено: {result.Warnings.Count}";
+            if (result.Warnings.Count > 0)
+                MessageBox.Show(string.Join(Environment.NewLine, result.Warnings), "Предупреждения импорта");
+        }
+        catch (Exception ex) { MessageBox.Show(ex.Message, "Ошибка импорта"); }
+    }
