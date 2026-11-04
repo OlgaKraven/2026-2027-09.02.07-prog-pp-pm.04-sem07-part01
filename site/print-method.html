@@ -1,0 +1,565 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Методические рекомендации · ПП ПМ.04</title><link rel="stylesheet" href="assets/style.css"><link rel="icon" href="assets/favicon.svg"></head><body><main id="main"><div class="hero"><p class="section-id">Производственная практика ПМ.04</p><h1>Сопровождение программного обеспечения</h1><p>Настольный журнал своей области: диагностика, обмен CSV и передача обновления.</p></div><article id="assignment-1" class="chapter"><header class="doc-head"><p class="section-id">1.1. Задание</p><h2>Сопровождение существующего журнала</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>Производственная ситуация</h3><p>Обеспечить обмен CSV в существующем настольном журнале своей предметной области. Сохранить работавшие функции, воспроизвести неисправность, установить причину, внести изменение и проверить обновление на копии данных. Образец «Сервисный журнал учебного центра» объясняет способ; назначенная область и её записи остаются индивидуальными.</p></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Исходный результат</h3><p>Использовать ранее принятый WPF-проект своей области. При отсутствии пригодного проекта использовать папку Source из собственного ZIP-стенда: названия и встроенные объекты уже адаптированы. Повторную разработку принятого окна, встроенного списка и обработчиков не выполнять. Демонстрацию читать как разбор; обязательный проект один — в назначенной области.</p></section></li><li class="step"><span class="number" aria-hidden="true">03</span><section class="card"><h3>Маршруты групп</h3><p>ДКИП-4ХХпрог выполняет основной маршрут: диагностика, исправление обмена, предметный отбор, регрессия и передача с откатом. VДКИП-31Хпрог и ДКИП-3ХХпрог после основного результата выполняют расширение «Обмен по именам столбцов и диагностика несовместимости». Если основной результат принят ранее, подтвердить его регрессией и перейти к новому изменению.</p></section></li></ol><div class="file-links"></div></article><article id="assignment-2" class="chapter"><header class="doc-head"><p class="section-id">1.2. Задание</p><h2>Обязательные функции и ограничения</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>Структура файла</h3><p>Заголовок строго Id;Item;Owner;Due;Status. Каждая запись содержит пять полей через точку с запятой. Id — целое число; Item — объект; Owner — ответственный; Due — дата dd.MM.yyyy; Status — «Открыта» либо «Завершена». Предметная область меняет значения полей, но не контракт обмена.</p></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Импорт и диагностика</h3><p>Принять корректные строки частично неверного файла. Для каждой пропущенной записи показать физический номер строки с учётом заголовка и причину. Проверять пять полей, целый Id, непустые Item/Owner, дату dd.MM.yyyy и допустимый статус. При неверном заголовке или недоступном файле сохранить ранее загруженный список.</p></section></li><li class="step"><span class="number" aria-hidden="true">03</span><section class="card"><h3>Экспорт и просмотр</h3><p>Записывать заголовок Id;Item;Owner;Due;Status и дату dd.MM.yyyy в UTF-8. Повторный импорт должен сохранять Id, Item, Owner, Due и Status каждой принятой записи. Отбор «Для оператора» меняет только представление; полный список остаётся источником экспорта. Разделитель и перевод строки внутри текстового поля в основном контракте запрещены и должны вызывать понятный отказ до записи.</p></section></li><li class="step"><span class="number" aria-hidden="true">04</span><section class="card"><h3>Дата и правило области</h3><p>Предусмотреть в окне поле «Контрольная дата». Для приёмки установить 01.10.2026 без изменения часов Windows. Просроченной считать только открытую запись со сроком раньше выбранного дня; срок в сам день проверки не просрочен. Особое условие и ожидаемый порядок Id взять из карточки своего варианта.</p></section></li></ol><div class="file-links"></div></article><article id="assignment-3" class="chapter"><header class="doc-head"><p class="section-id">1.3. Задание</p><h2>Диагностика и самостоятельная работа</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>D1–D3</h3><p>На предоставленной CSV-заготовке изучить три дефекта: неполная строка прекращает импорт; экспорт нельзя повторно прочитать; завершённая заявка попадает в просрочку. Исправить их в рабочей копии своего проекта. Для каждого зафиксировать вход, действия, ожидаемое и фактическое поведение, причину и повторную проверку. Если исправления приняты ранее, повторить проверки без повторной реализации.</p></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Отбор своего варианта</h3><p>Реализовать правило назначенной области в OperatorView.Select. Использовать собственный основной CSV и контрольный CSV из карточки. Проверить фильтр, порядок Id и границы условия. Готовый образец решает только демонстрационную область; его ответ не подменяет решение назначенного варианта.</p></section></li></ol><div class="file-links"></div></article><article id="assignment-4" class="chapter"><header class="doc-head"><p class="section-id">1.4. Задание</p><h2>Дополнительный результат длинной практики</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>Новое правило обмена</h3><p>Для VДКИП-31Хпрог и ДКИП-3ХХпрог добавить явно включаемый режим чтения столбцов по именам. Поддержать перестановку пяти известных столбцов при сохранении прежнего канонического CSV. Неизвестный, отсутствующий или повторённый столбец отклонять до изменения списка. Экспорт всегда формирует исходный канонический порядок.</p></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Новые доказательства</h3><p>На своей области подготовить переставленный заголовок и соответствующие ему значения строк, ошибочный заголовок и частично неверный файл. Показать равенство принятых данных до и после преобразования, правильный физический номер ошибки и сохранение прежнего списка при отказе. D1–D3 повторить только как регрессию.</p></section></li></ol><div class="file-links"></div></article><article id="assignment-5" class="chapter"><header class="doc-head"><p class="section-id">1.5. Задание</p><h2>Приёмка обновления</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>Набор проверок</h3><p>Подготовить правильный файл, неполную строку, нецелый Id, неверную дату, пустой Item или Owner, неизвестный статус, файл только с заголовком, неверный заголовок, отсутствующий файл и текстовое поле с разделителем. До запуска для каждого входа записать ожидание, после запуска — фактические записи и предупреждения.</p></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Сохранность данных</h3><p>После исправления экспортировать корректный набор и импортировать его в чистой копии. Сравнить Id, Item, Owner, Due, Status и порядок строк, затем повторить исходный сценарий со встроенными данными. Проверить особое правило своей предметной области отдельно от D1–D3.</p></section></li><li class="step"><span class="number" aria-hidden="true">03</span><section class="card"><h3>Обновление и откат</h3><p>Сохранить отдельно прежнюю программу, исходный CSV и его резервную копию. Запустить обновление на копии данных, проверить основные действия и предметное правило, затем восстановить прежнюю программу и исходный CSV. Сравнить восстановленный файл с исходником и повторить ранее работавший сценарий. Не перезаписывать исходный CSV первым экспортом.</p></section></li><li class="step"><span class="number" aria-hidden="true">04</span><section class="card"><h3>Наблюдаемый результат</h3><p>Сохранить реальные снимки состояния до исправления, предупреждения со строкой, принятого набора, предметной выборки, полного списка, повторного импорта и отката. Для каждого снимка указать вход и действие, которое он подтверждает.</p></section></li></ol><div class="file-links"></div></article><article id="assignment-6" class="chapter"><header class="doc-head"><p class="section-id">1.6. Задание</p><h2>Сдача результата</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>Программный проект</h3><p>Представить проект своей области, исходные и контрольные CSV, запускаемый пакет, инструкцию оператору и протокол проверок. В самом отчёте указать доступную проверяющему ссылку на репозиторий нужного проекта.</p></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Документы</h3><p>Подготовить отчёт по предоставленному шаблону, индивидуальное задание, аттестационный лист, справку и презентацию по формам, выданным руководителем. Договор о практической подготовке оформляется по выданной организацией форме. Персональные данные, сроки подписания и подписантов брать из полученных документов; отсутствующую форму запросить у руководителя.</p></section></li><li class="step"><span class="number" aria-hidden="true">03</span><section class="card"><h3>Самопроверка перед передачей</h3><p>Проверить открытие ссылки из отчёта, комплектность запускаемой папки, наличие исходного CSV и резервной копии, соответствие снимков фактическим действиям и выполнение маршрута своей группы. В выводе назвать выполненные проверки и оставшиеся ограничения.</p></section></li></ol><div class="file-links"></div></article><article id="files" class="chapter"><header class="doc-head"><p class="section-id">2. Файлы</p><h2>Файлы для выполнения и сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>Входной проект</h3><p>ZIP-стенд назначенной области содержит её Source, Draft и данные. Если принятой WPF-основы нет, она уже предоставлена в Source. Общие архивы ServiceDesk-source.zip и ServiceDesk-csv-draft.zip — демонстрационные материалы для объяснения; обязательный результат один, в своей Work-копии.</p></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Данные</h3><p>demo.csv содержит две корректные записи и неполную физическую строку 4; demo-valid.csv — две корректные записи; demo-operator.csv — шесть записей для демонстрационного отбора. В карточке назначенной области находятся variant-XX.csv и variant-check-XX.csv. Не менять назначенную область на демонстрационную.</p></section></li><li class="step"><span class="number" aria-hidden="true">03</span><section class="card"><h3>Сверка и расширение</h3><p>ServiceDesk-fixed-example.zip — исправленный демонстрационный проект с датой, отбором и адаптером заголовков. Открывать для сверки после анализа. demo-reordered.csv и demo-bad-header.csv нужны в расширенном маршруте. Архивы распаковывать в разные папки, не складывать одинаково названные классы в один проект.</p></section></li><li class="step"><span class="number" aria-hidden="true">04</span><section class="card"><h3>Форма отчёта</h3><p>Предоставлены два чистых Word-бланка с одинаковым точным именем «Отчет о выполнении.docx»: основной для ДКИП-4ХХпрог и расширенный для VДКИП-31Хпрог, ДКИП-3ХХпрог. Это копии единого мастера с таблицами, пустыми ответами, местами для собственных снимков и ссылкой на репозиторий. Выбрать бланк по группе; перенос из Markdown не нужен.</p></section></li></ol><div class="file-links"></div></article><div class="file-links"><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-source.zip">ServiceDesk-source.zip</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-source.zip</span></p><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-csv-draft.zip">ServiceDesk-csv-draft.zip</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-csv-draft.zip</span></p><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-fixed-example.zip">Тестовый проект для сверки · исправленный ServiceDesk</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-fixed-example.zip</span></p><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo.csv">demo.csv</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo.csv</span></p><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo-valid.csv">demo-valid.csv</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo-valid.csv</span></p><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo-operator.csv">Скачать демонстрационный CSV для отбора оператору</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo-operator.csv</span></p><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo-reordered.csv">demo-reordered.csv</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo-reordered.csv</span></p><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo-bad-header.csv">demo-bad-header.csv</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo-bad-header.csv</span></p><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/%D0%9E%D1%82%D1%87%D0%B5%D1%82%20%D0%BE%20%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B8.docx">Отчёт Word · ДКИП-4ХХпрог</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/Отчет о выполнении.docx</span></p><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/extended/%D0%9E%D1%82%D1%87%D0%B5%D1%82%20%D0%BE%20%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B8.docx">Отчёт Word · VДКИП-31Хпрог и ДКИП-3ХХпрог</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/extended/Отчет о выполнении.docx</span></p></div><article id="step-1" class="chapter"><header class="doc-head"><p class="section-id">3.1. Методика</p><h2>От исходного приложения к проверенному обновлению</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>Один рабочий проект</h3><p>Открыть список областей и скачать ZIP-стенд своего варианта. Распаковать его через правую кнопку → «Извлечь всё» в отдельную учебную папку, например C:\Practice\PP04-01. Внутри находятся Source (основа своей области), Draft (та же область с намеренными D1–D3), data (данные) и START.html (карта файлов). Если уже имеется принятый WPF-проект этой области, сохранить его в Source вместо предоставленной основы. Скопировать Source в соседнюю папку Work. Все обязательные изменения выполняются в одном проекте Work. Демонстрационный ServiceDesk нужен для чтения и сверки; отдельная разработка второго проекта не требуется.</p></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Задача сопровождения</h3><p>Оператор сервисного журнала умеет просматривать встроенные заявки, но хочет обмениваться CSV. Сначала докажите исправность окна, затем воспроизведите ошибки обмена. Исправлять их по отдельности: так повторная проверка показывает причину улучшения. После общей диагностики добавить выборку для оператора и выполните собственное предметное правило.</p></section></li><li class="step"><span class="number" aria-hidden="true">03</span><section class="card"><h3>Что считать рабочей копией</h3><p>Source оставлять неизменной. Draft и Work — соседние папки: не помещать один проект внутрь другого, иначе SDK может включить чужие .cs-файлы. В Проводнике включить «Вид → Показать → Расширения имён файлов». Открыть START.html двойным щелчком. В нём указаны точные имена CSV и место каждого файла. Создать рядом папки Delivery\v1.1, Delivery\v1.2, Delivery\data и Delivery\backup. Исправленный тестовый проект скачать отдельно по ссылке «Тестовый проект для сверки» и распаковать вне Work.</p></section></li><li class="step"><span class="number" aria-hidden="true">04</span><section class="card"><h3>Среда</h3><p>В проверенной среде используются Windows, Visual Studio и .NET SDK 10.0.401. В файле ServiceDesk.csproj указан net10.0-windows и UseWPF=true. SDK компилирует проект; Desktop Runtime выполняет WPF-приложение. Если Visual Studio не поддерживает этот SDK или не видит WPF-компоненты, остановить сборку и сообщите преподавателю фактическую ошибку. Не менять целевую платформу наугад.</p></section></li></ol><div class="file-links"><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-fixed-example.zip">Тестовый проект для сверки · исправленный ServiceDesk</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-fixed-example.zip</span></p></div></article><article id="step-2" class="chapter"><header class="doc-head"><p class="section-id">3.2. Методика</p><h2>Открытие и контроль исходной версии</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>Открыть проект</h3><p>Запустить Visual Studio. На стартовом окне выбрать «Открыть проект или решение» (Open a project or solution), найти Work\ServiceDesk.csproj. Через «Вид → Обозреватель решений» (View → Solution Explorer) открыть дерево проекта. Разверните MainWindow.xaml: вложенный MainWindow.xaml.cs — код окна. XAML описывает расположение и привязки; обработчик C# отвечает на действие пользователя.</p></section></li><li class="figure-row"><figure><a href="assets/screenshots/vs-project-code.jpg"><span class="screenshot-crop" style="aspect-ratio:345/310"><img src="assets/screenshots/vs-project-code.jpg" alt="MainWindow.xaml раскрыт и содержит MainWindow.xaml.cs" style="width:402.898551%;left:-300.000000%;top:-20.967742%"></span></a><figcaption>Файлы окна в Обозревателе решений. В Visual Studio раскрыт MainWindow.xaml; под ним находится MainWindow.xaml.cs. Двойной щелчок по вложенному файлу открывает C#-код окна. Снимок показывает CSV-заготовку; названия файлов у исходной основы такие же.</figcaption></figure></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Собрать и запустить</h3><p>В верхней панели выбрать Debug. Нажать «Сборка → Собрать решение» (Build → Build Solution), затем F5. Сначала исправляют первую ошибку сборки, а не последующие следствия. В окне нажать «Тестовые данные»: появятся две записи своей области (в демонстрации — проектор и ноутбук). Нажать «Просрочено»: одна открытая заявка просрочена, завершённая исключена. Повторная загрузка не должна удваивать список. В поле «Контрольная дата» установить 01.10.2026. Системную дату не менять.</p></section></li><li class="step"><span class="number" aria-hidden="true">03</span><section class="card"><h3>Разобрать событие</h3><p>Открыть MainWindow.xaml во вкладке XAML. У кнопки есть Click=&quot;LoadTestData_Click&quot;. В коде окна найти этот метод через Ctrl+F. Он получает List&lt;Ticket&gt;, назначает его ItemsSource и меняет TextBlock StatusText. DataGrid читает значения свойств по Binding. InitializeComponent создаёт элементы, определённые в XAML; без него имена TicketsGrid и StatusText не готовы к использованию.</p></section></li><li class="figure-row"><figure><a href="assets/screenshots/source-built-in.jpg"><img width="1026" height="603" src="assets/screenshots/source-built-in.jpg" alt="Встроенные данные при выбранной дате"></a><figcaption>Встроенные данные при выбранной дате. На работающем окне выставлена дата 01.10.2026; две встроенные заявки доступны до подключения CSV. В демонстрации выбранная дата даёт сроки 29.09.2026 и 30.09.2026.</figcaption></figure></li></ol><div class="file-links"><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-source.zip">ServiceDesk-source.zip</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-source.zip</span></p></div></article><article id="step-3" class="chapter"><header class="doc-head"><p class="section-id">3.3. Методика</p><h2>Контрольная дата как входное значение</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>Назначение</h3><p>Контрольная дата — день, относительно которого проверяются сроки. DateTime.Today зависит от дня запуска и не позволяет воспроизвести сохранённый контрольный ответ. CheckDate читает выбранную дату из DatePicker; одинаковый день передаётся счётчику и OperatorView.Select.</p></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Где изменить</h3><p>В уже предоставленных Source и Draft поле ControlDate находится в MainWindow.xaml, значение назначается в конструкторе MainWindow, а свойство CheckDate — в MainWindow.xaml.cs. При переносе в ранее принятый проект добавить поле, событие ControlDate_Changed и свойство из полных файлов основы; заменить передачу DateTime.Today в обработчиках на CheckDate. Не менять параметр today внутри чистых методов.</p></section></li><li class="step"><span class="number" aria-hidden="true">03</span><section class="card"><h3>Проверка</h3><p>В окне установить 01.10.2026 и нажать «Тестовые данные», затем «Просрочено»: из двух встроенных записей просрочена одна открытая. Установить 04.11.2026 и снова нажать «Тестовые данные»: встроенные сроки создаются относительно выбранного дня, поэтому ответ остаётся 1. Вернуть 01.10.2026. Проверку разных ответов на неизменном CSV выполнить после появления кнопки «Для оператора» в шаге 9; сейчас CSV и отбор ещё не подключены.</p><p class="result"><b>Проверка.</b> Дата меняется только в приложении. Системные часы не изменяются; встроенные данные и постоянный CSV имеют разное назначение.</p></section></li></ol><div class="file-links"></div></article><article id="step-4" class="chapter"><header class="doc-head"><p class="section-id">3.4. Методика</p><h2>Подключение CSV без потери исходной проверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>Получить заготовку</h3><p>Остановить приложение Shift+F5. Открыть папку Draft своего распакованного стенда, затем её ServiceDesk.csproj в отдельном окне Visual Studio для чтения. В Work сохранить исходные App.xaml и ServiceDesk.csproj. Из Draft перенести полностью только App.xaml.cs, MainWindow.xaml и MainWindow.xaml.cs, заменив одноимённые файлы Work. В Обозревателе решений открыть файл, Ctrl+A выделить его текст, вставить полный текст одноимённого файла Draft и сохранить Ctrl+S; повторить для всех трёх файлов. Это согласованное изменение: новые Click, обработчики и чтение CSV появляются вместе. Не добавлять второй MainWindow.xaml.cs рядом с первым.</p></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверить объединённую версию</h3><p>Собрать Work и запустить. Должны одновременно присутствовать «Тестовые данные», «Открыть CSV», «Экспорт CSV», «Просрочено». Повторить встроенные данные: два объекта и одна просрочка. Существующий сценарий сохраняется, потому что TestData и его обработчик перенесены в CSV-заготовку. Новые функции не должны уничтожать прежнюю контрольную точку.</p></section></li><li class="step"><span class="number" aria-hidden="true">03</span><section class="card"><h3>Происхождение кода</h3><p>Заготовка является предоставленной версией ServiceDesk с намеренными D1–D3. Дальнейшие фрагменты берутся из исправленного демонстрационного исходника и помещаются только в точно названные участки. Стандартный код Visual Studio — InitializeComponent и сгенерированные файлы obj — вручную не редактировать.</p></section></li><li class="step"><span class="number" aria-hidden="true">04</span><section class="card"><h3>Сохранить прежнюю CSV-версию до исправлений</h3><p>После замены трёх файлов и успешной сборки сохранить Work целиком в соседней папке BeforeFix. В Visual Studio выбрать Release вместо Debug, выполнить «Сборка → Собрать решение». В Проводнике открыть Work\bin\Release\net10.0-windows и скопировать всё содержимое, включая exe, dll, json и остальные файлы, в Delivery\v1.1. Эта версия нужна для настоящего отката. Вернуться в Debug. В data своего стенда скопировать variant-valid-XX.csv в Delivery\data\work.csv и ещё раз в Delivery\backup\work-before.csv (XX — свой номер). Сравнить обе копии в редакторе; дальше резервную не изменять.</p></section></li></ol><div class="file-links"><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-csv-draft.zip">ServiceDesk-csv-draft.zip</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-csv-draft.zip</span></p></div></article><article id="step-5" class="chapter"><header class="doc-head"><p class="section-id">3.5. Методика</p><h2>Входные данные и воспроизведение трёх дефектов</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>Файлы собственного проекта</h3><p>На снимках показан демонстрационный журнал. В Work использовать файлы своего стенда: вместо demo.csv — variant-XX.csv, вместо demo-valid.csv — variant-valid-XX.csv, вместо demo-operator.csv — variant-check-XX.csv. Заголовок и дефектная строка одинакового вида; названия объектов и ответственных свои. Для шагов D1–D3 в любом варианте ожидаются две хорошие записи, предупреждение о физической строке 4 и одна открытая просроченная запись. Конкретное правило отбора своей области вводится после демонстрационной цепочки в шаге 10.</p></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Прогноз до импорта</h3><p>Скачать demo.csv и demo-valid.csv. Открыть их в текстовом редакторе. Заголовок — Id;Item;Owner;Due;Status. Разделитель — точка с запятой, дата — dd.MM.yyyy. В demo.csv две полные записи и неполная физическая строка 4 с Id=103. Номер строки относится к месту в файле, Id — к объекту. Ожидать две записи и предупреждение, а не потерю корректных заявок.</p></section></li><li class="step"><span class="number" aria-hidden="true">03</span><section class="card"><h3>D1: ошибка всей загрузки</h3><p>В Work нажать «Открыть CSV» и выбрать demo.csv. Зафиксировать сообщение ошибки и отсутствие результата загрузки. В MainWindow.xaml.cs найти CsvStore.Read. Поставить точку останова щелчком в левом поле перед var cells. Через F10 и «Отладка → Окна → Локальные» (Debug → Windows → Locals) проследите длину массива. У неполной строки только три поля, обращение к индексу 3 уже ошибочно; проверка должна предшествовать любому чтению недостающего поля.</p></section></li><li class="step"><span class="number" aria-hidden="true">04</span><section class="card"><h3>Пройти до неполной строки в отладчике</h3><p>В редакторе нажать Ctrl+F, ввести var cells = и закрыть поиск Escape. Нажать F9 на найденной строке: слева появится красная точка. Запустить F5 и открыть свой основной CSV. Отладчик останавливается перед разделением первой записи; нажать F10, чтобы выполнить только эту строку. В «Отладка → Окна → Локальные» найти cells. F5 переходит к той же точке для следующей записи. После двух F5 от первой остановки выбрана неполная физическая строка 4; нажать F10. Раскрыть стрелку слева от cells: доступны только индексы [0], [1], [2], поэтому cells[3] на следующей строке вызовет ошибку. rows уже содержит две хорошие записи. Сделать свой снимок. Перед исправлениями остановить сеанс Shift+F5; точку убрать F9 на той же строке.</p></section></li><li class="figure-row"><figure><a href="assets/screenshots/vs-d1-locals.jpg"><span class="screenshot-crop" style="aspect-ratio:665/285"><img src="assets/screenshots/vs-d1-locals.jpg" alt="В Visual Studio cells содержит три поля, rows содержит две записи" style="width:209.022556%;left:-4.511278%;top:-186.666667%"></span></a><figcaption>Неполная строка в локальных переменных. Снимок сделан перед обращением к отсутствующему полю [3]. В окне «Локальные»: rows — Count = 2, line — запись 103;Принтер;Олег, cells — string[3] с индексами [0]–[2]. В своей области значения названий другие, но причина отказа та же.</figcaption></figure></li><li class="step"><span class="number" aria-hidden="true">05</span><section class="card"><h3>D2 и D3 независимо от D1</h3><p>Открыть demo-valid.csv. Нажать «Просрочено»: черновая версия считает две прошлые даты, включая завершённую. Экспортировать через «Экспорт CSV» в новый файл broken-export.csv и открыть его текстовым редактором: запятая и yyyy-MM-dd расходятся с контрактом. Повторный импорт этого файла не работает. Сохранить наблюдения до правки; после неё результат сравнивают с тем же входом.</p></section></li><li class="figure-row"><figure><a href="assets/screenshots/draft-error.jpg"><img width="265" height="133" src="assets/screenshots/draft-error.jpg" alt="Исключение индекса в CSV-заготовке"></a><figcaption>D1 до исправления. CSV-заготовка прекращает чтение demo.csv при неполной строке; исправленная версия должна вернуть корректные записи и предупреждение.</figcaption></figure></li></ol><div class="file-links"><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo.csv">demo.csv</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo.csv</span></p><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo-valid.csv">demo-valid.csv</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo-valid.csv</span></p><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-csv-draft.zip">ServiceDesk-csv-draft.zip</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-csv-draft.zip</span></p></div></article><article id="step-6" class="chapter"><header class="doc-head"><p class="section-id">3.6. Методика</p><h2>D1: результат чтения содержит данные и предупреждения</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>Согласованная замена</h3><p>Остановить отладку Shift+F5. В Work/MainWindow.xaml.cs после существующей строки internal record Ticket добавить следующую одну строку. ReadResult — новый тип результата, который хранит и корректные записи, и причины пропуска. Внутри CsvStore заменить целиком метод public static List&lt;Ticket&gt; Read(string path), включая его фигурные скобки, следующим методом Read. Остальные методы пока оставить прежними.</p></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Код для указанного изменения</h3><pre><code>internal record ReadResult(List&lt;Ticket&gt; Tickets, List&lt;string&gt; Warnings);</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">03</span><section class="card"><h3>Код для указанного изменения</h3><pre><code>    private const string Header = &quot;Id;Item;Owner;Due;Status&quot;;
+
+    public static ReadResult Read(string path)
+    {
+        var tickets = new List&lt;Ticket&gt;();
+        var warnings = new List&lt;string&gt;();
+        var lines = File.ReadAllLines(path, Encoding.UTF8);
+        if (lines.Length == 0 || lines[0].TrimStart(&#x27;\uFEFF&#x27;) != Header)
+            throw new InvalidDataException($&quot;Ожидается заголовок {Header}&quot;);
+        for (int index = 1; index &lt; lines.Length; index++)
+        {
+            if (string.IsNullOrWhiteSpace(lines[index])) continue;
+            var cells = lines[index].Split(&#x27;;&#x27;);
+            string? reason = null;
+            if (cells.Length != 5) reason = &quot;ожидается пять полей&quot;;
+            else if (!int.TryParse(cells[0], out _)) reason = &quot;неверный Id&quot;;
+            else if (string.IsNullOrWhiteSpace(cells[1]) || string.IsNullOrWhiteSpace(cells[2])) reason = &quot;пустое обязательное поле&quot;;
+            else if (!DateTime.TryParseExact(cells[3], &quot;dd.MM.yyyy&quot;, CultureInfo.InvariantCulture, DateTimeStyles.None, out _)) reason = &quot;неверная дата&quot;;
+            else if (cells[4] != &quot;Открыта&quot; &amp;&amp; cells[4] != &quot;Завершена&quot;) reason = &quot;неверный статус&quot;;
+            if (reason != null) { warnings.Add($&quot;Строка {index + 1}: {reason}&quot;); continue; }
+            tickets.Add(new Ticket(int.Parse(cells[0], CultureInfo.InvariantCulture), cells[1], cells[2],
+                DateTime.ParseExact(cells[3], &quot;dd.MM.yyyy&quot;, CultureInfo.InvariantCulture), cells[4]));
+        }
+        return new ReadResult(tickets, warnings);
+    }</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">04</span><section class="card"><h3>Смысл чтения</h3><p>ReadAllLines получает строки в UTF-8. Заголовок проверяется до цикла. Пустые строки не являются заявками; пять полей проверяются до индексов. TryParse возвращает успех вместо исключения; TryParseExact требует однозначную дату. reason содержит первую найденную причину. continue пропускает только текущую строку. index+1 — её физический номер с учётом заголовка. Хорошая строка создаёт Ticket и остаётся доступной.</p></section></li><li class="step"><span class="number" aria-hidden="true">05</span><section class="card"><h3>Завершить зависимое изменение</h3><p>Внутри MainWindow заменить целиком private void LoadCsv(string path) следующим фрагментом. В App.xaml.cs заменить весь файл кодом из следующего блока. Это адаптирует запуск и режим самопроверки к ReadResult. Пока эти три связанные замены не закончены, промежуточная сборка может сообщать несовместимые типы; это не контрольная точка.</p></section></li><li class="step"><span class="number" aria-hidden="true">06</span><section class="card"><h3>Код для указанного изменения</h3><pre><code>    private void LoadCsv(string path)
+    {
+        try
+        {
+            var result = CsvStore.Read(path);
+            tickets = result.Tickets;
+            TicketsGrid.ItemsSource = tickets.ToList();
+            StatusText.Text = $&quot;Загружено: {tickets.Count}; пропущено: {result.Warnings.Count}&quot;;
+            if (result.Warnings.Count &gt; 0)
+                MessageBox.Show(string.Join(Environment.NewLine, result.Warnings), &quot;Предупреждения импорта&quot;);
+        }
+        catch (Exception ex) { MessageBox.Show(ex.Message, &quot;Ошибка импорта&quot;); }
+    }</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">07</span><section class="card"><h3>Код для указанного изменения — часть 1 из 2</h3><pre><code>using System.IO;
+using System.Windows;
+using System.Globalization;
+
+namespace ServiceDeskWpf;
+
+public partial class App : Application
+{
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        base.OnStartup(e);
+        var args = e.Args.ToList();
+        var checkDate = new DateTime(2026, 10, 1);
+        int dateIndex = args.IndexOf(&quot;--date&quot;);
+        if (dateIndex &gt;= 0)
+        {
+            if (dateIndex + 1 &gt;= args.Count || !DateTime.TryParseExact(args[dateIndex + 1],
+                &quot;yyyy-MM-dd&quot;, CultureInfo.InvariantCulture, DateTimeStyles.None, out checkDate))
+            {
+                MessageBox.Show(&quot;Параметр --date требует дату yyyy-MM-dd&quot;, &quot;Ошибка даты&quot;);
+                Shutdown(2);
+                return;
+            }
+            args.RemoveRange(dateIndex, 2);
+        }
+        var runArgs = args.ToArray();
+        if (runArgs.Length == 1 &amp;&amp; runArgs[0] == &quot;--test-built-in&quot;)</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">07</span><section class="card"><h3>Код для указанного изменения — часть 2 из 2</h3><pre><code>        {
+            var rows = TestData.Create(checkDate);
+            Console.WriteLine($&quot;test-records={rows.Count}; overdue={CsvStore.CountOverdue(rows, checkDate)}&quot;);
+            Shutdown();
+            return;
+        }
+        if (runArgs.Length == 2 &amp;&amp; runArgs[0] == &quot;--self-test&quot;)
+        {
+            var result = CsvStore.Read(runArgs[1]);
+            var target = Path.GetTempFileName();
+            try
+            {
+                CsvStore.Write(target, result.Tickets);
+                var again = CsvStore.Read(target);
+                if (again.Warnings.Count != 0 || !result.Tickets.SequenceEqual(again.Tickets))
+                    throw new InvalidOperationException(&quot;Повторный импорт не совпал&quot;);
+                Console.WriteLine($&quot;tickets={result.Tickets.Count}; warnings={result.Warnings.Count}; overdue={CsvStore.CountOverdue(result.Tickets, checkDate)}&quot;);
+                foreach (var warning in result.Warnings) Console.WriteLine(warning);
+            }
+            finally { File.Delete(target); }
+            Shutdown();
+            return;
+        }
+        new MainWindow(runArgs.Length == 2 &amp;&amp; runArgs[0] == &quot;--demo&quot; ? runArgs[1] : null, checkDate).Show();
+    }
+}</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">08</span><section class="card"><h3>Проверка D1</h3><p>Теперь собрать Work, запустить F5 и открыть demo.csv. Таблица должна сохранить заявки 101 и 102, сообщение — «Строка 4: ожидается пять полей», состояние — «Загружено: 2; пропущено: 1». Закрыть сообщение: строки остаются. Нажать «Тестовые данные» и проверить исходный сценарий. Экспорт пока намеренно несовместим — его исправляют далее.</p></section></li><li class="figure-row"><figure><a href="assets/screenshots/partial-import-stage-d1.jpg"><img width="1026" height="603" src="assets/screenshots/partial-import-stage-d1.jpg" alt="Предупреждение относится к строке файла"></a><figcaption>Предупреждение относится к строке файла. Открыт demo.csv. Строки 101 и 102 приняты; предупреждение называет физическую строку 4. После закрытия сообщения данные остаются в таблице.</figcaption></figure></li><li class="figure-row"><figure><a href="assets/screenshots/partial-warning.jpg"><img width="217" height="133" src="assets/screenshots/partial-warning.jpg" alt="Предупреждение об ошибочной строке 4"></a><figcaption>Физическая строка ошибки. Отдельное сообщение после чтения demo.csv: строка 4 содержит меньше пяти полей.</figcaption></figure></li></ol><div class="file-links"><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo.csv">demo.csv</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo.csv</span></p><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/snippet-read-result.txt">snippet-read-result.txt</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/snippet-read-result.txt</span></p><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/snippet-read.txt">snippet-read.txt</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/snippet-read.txt</span></p><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/snippet-load.txt">snippet-load.txt</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/snippet-load.txt</span></p><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/snippet-app.txt">snippet-app.txt</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/snippet-app.txt</span></p></div></article><article id="step-7" class="chapter"><header class="doc-head"><p class="section-id">3.7. Методика</p><h2>D2: запись соблюдает тот же контракт, что чтение</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>Точное место правки</h3><p>В Work/MainWindow.xaml.cs, внутри CsvStore, заменить целиком public static void Write(string path, IEnumerable&lt;Ticket&gt; rows) следующим методом. Константа Header уже появилась вместе с Read: если её ещё нет, добавить private const string Header = &quot;Id;Item;Owner;Due;Status&quot;; непосредственно после открывающей скобки CsvStore. Не объявлять Header дважды.</p></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Код для указанного изменения</h3><pre><code>    public static void Write(string path, IEnumerable&lt;Ticket&gt; tickets)
+    {
+        var lines = new List&lt;string&gt; { Header };
+        foreach (var t in tickets)
+        {
+            if (new[] { t.Item, t.Owner, t.Status }.Any(value =&gt; value.Contains(&#x27;;&#x27;) || value.Contains(&#x27;\n&#x27;) || value.Contains(&#x27;\r&#x27;)))
+                throw new InvalidDataException(&quot;В поле нельзя использовать разделитель или перевод строки&quot;);
+            lines.Add($&quot;{t.Id};{t.Item};{t.Owner};{t.Due.ToString(&quot;dd.MM.yyyy&quot;, CultureInfo.InvariantCulture)};{t.Status}&quot;);
+        }
+        File.WriteAllLines(path, lines, Encoding.UTF8);
+    }</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">03</span><section class="card"><h3>Зачем две проверки</h3><p>Сначала формируется весь список строк, затем File.WriteAllLines записывает его в UTF-8. ToString с InvariantCulture сохраняет dd.MM.yyyy независимо от системной культуры. В этом простом контракте нет CSV-кавычек и экранирования: точка с запятой и перевод строки внутри поля отклоняются, чтобы не создать повреждённый файл. Отказ происходит до записи содержимого.</p></section></li><li class="step"><span class="number" aria-hidden="true">04</span><section class="card"><h3>Сравнить значения</h3><p>Собрать, открыть demo-valid.csv, экспортировать в roundtrip.csv и открыть этот результат. В текстовом редакторе сравнить заголовок, оба Id, Item, Owner, Due и Status; одинакового количества недостаточно. Вернитесь к demo.csv: предупреждение о строке 4 должно остаться. Экспорт сохраняет загруженные корректные записи и не восстанавливает отвергнутую строку.</p></section></li></ol><div class="file-links"><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo-valid.csv">demo-valid.csv</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo-valid.csv</span></p><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo.csv">demo.csv</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo.csv</span></p><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/snippet-write.txt">snippet-write.txt</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/snippet-write.txt</span></p></div></article><article id="step-8" class="chapter"><header class="doc-head"><p class="section-id">3.8. Методика</p><h2>D3: просрочка зависит от срока и состояния</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>Заменить одно правило</h3><p>Внутри CsvStore заменить целиком метод CountOverdue следующим фрагментом. Не менять TestData.CountOverdue: он был правильным и нужен для сравнения. Два правила должны давать одинаковый результат на одинаковых данных.</p></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Код для указанного изменения</h3><pre><code>    public static int CountOverdue(IEnumerable&lt;Ticket&gt; tickets, DateTime today) =&gt;
+        tickets.Count(t =&gt; t.Status != &quot;Завершена&quot; &amp;&amp; t.Due.Date &lt; today.Date);</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">03</span><section class="card"><h3>Разобрать выражение</h3><p>Count считает только элементы с истинным условием. Статус завершения исключается до сравнения дат. Due.Date и today.Date сравнивают календарные дни без времени. Срок на контрольную дату ещё не просрочен. Параметр today позволяет проверить правило на заданную дату без изменения часов Windows.</p></section></li><li class="step"><span class="number" aria-hidden="true">04</span><section class="card"><h3>Граничная проверка</h3><p>Собрать и открыть demo-valid.csv: после «Просрочено» ожидается 1. В копии CSV создать открытую вчера, завершённую вчера и открытую сегодня — ожидается 1; заменить вчера на завтра — ожидается 0. Затем снова загрузите demo.csv и нажать «Тестовые данные»: два разных источника данных должны оставаться рабочими.</p></section></li></ol><div class="file-links"><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo-valid.csv">demo-valid.csv</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo-valid.csv</span></p><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/snippet-overdue.txt">snippet-overdue.txt</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/snippet-overdue.txt</span></p></div></article><article id="step-9" class="chapter"><header class="doc-head"><p class="section-id">3.9. Методика</p><h2>Отбор для оператора без потери исходного списка</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>Демонстрационная задача</h3><p>В отдельной демонстрационной области оператору нужны незавершённые просроченные заявки по сроку, затем по Id. Полный импорт должен оставаться в памяти и экспортироваться независимо от того, какую выборку сейчас видит оператор. Так пользовательский просмотр не превращается в потерю данных.</p></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Добавить правило и события</h3><p>В Work/MainWindow.xaml.cs между CsvStore и MainWindow добавить класс OperatorView. Внутри MainWindow добавить два обработчика из следующего фрагмента. В MainWindow.xaml заменить только WrapPanel Grid.Row=&quot;1&quot; с кнопками на приведённый WrapPanel; строку с ControlDate и её событие сохранить. Это одно связанное изменение; собрать после всех вставок.</p></section></li><li class="step"><span class="number" aria-hidden="true">03</span><section class="card"><h3>Код для указанного изменения</h3><pre><code>internal static class OperatorView
+{
+    public static List&lt;Ticket&gt; Select(IEnumerable&lt;Ticket&gt; rows, DateTime today) =&gt;
+        rows.Where(t =&gt; t.Status == &quot;Открыта&quot; &amp;&amp; t.Due.Date &lt; today.Date)
+            .OrderBy(t =&gt; t.Due).ThenBy(t =&gt; t.Id).ToList();
+}</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">04</span><section class="card"><h3>Код для указанного изменения</h3><pre><code>    private void SelectForOperator_Click(object sender, RoutedEventArgs e)
+    {
+        var selected = OperatorView.Select(tickets, CheckDate);
+        TicketsGrid.ItemsSource = selected;
+        StatusText.Text = $&quot;Для оператора: {selected.Count}; всего: {tickets.Count}&quot;;
+    }
+
+    private void ShowAll_Click(object sender, RoutedEventArgs e)
+    {
+        TicketsGrid.ItemsSource = tickets.ToList();
+        StatusText.Text = $&quot;Все записи: {tickets.Count}&quot;;
+    }</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">05</span><section class="card"><h3>Код для указанного изменения</h3><pre><code>    &lt;WrapPanel Grid.Row=&quot;1&quot; Margin=&quot;0,0,0,8&quot;&gt;
+      &lt;Button Content=&quot;Тестовые данные&quot; Click=&quot;LoadTestData_Click&quot; /&gt;
+      &lt;Button Content=&quot;Открыть CSV&quot; Click=&quot;OpenCsv_Click&quot; /&gt;
+      &lt;Button Content=&quot;Экспорт CSV&quot; Click=&quot;SaveCsv_Click&quot; /&gt;
+      &lt;Button Content=&quot;Просрочено&quot; Click=&quot;CountOverdue_Click&quot; /&gt;
+      &lt;Button Content=&quot;Для оператора&quot; Click=&quot;SelectForOperator_Click&quot; /&gt;
+      &lt;Button Content=&quot;Все записи&quot; Click=&quot;ShowAll_Click&quot; /&gt;
+    &lt;/WrapPanel&gt;</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">06</span><section class="card"><h3>Устройство выборки</h3><p>Where оставляет нужные записи, OrderBy задаёт главный порядок, ThenBy разрешает равенство срока, ToList создаёт отдельный список для таблицы. tickets не заменяется выборкой. «Все записи» возвращает полный набор. WrapPanel переносит кнопки при недостатке ширины окна. При реализации своего варианта меняется только Select, а загрузка, экспорт и восстановление просмотра сохраняются.</p></section></li><li class="step"><span class="number" aria-hidden="true">07</span><section class="card"><h3>Проверить действие</h3><p>Собрать и открыть demo-operator.csv. В поле «Контрольная дата» установить 01.10.2026, нажать «Для оператора»: ожидаемые Id — 105, 101, 103. Экспортировать в новый файл и повторно импортировать: сохранить все шесть записей. Кнопка «Все записи» также должна показать шесть строк. Затем изменить выбранную дату и заново нажать отбор; после проверки вернуть 01.10.2026.</p></section></li><li class="figure-row"><figure><a href="assets/screenshots/operator-selected-basic.jpg"><img width="1026" height="603" src="assets/screenshots/operator-selected-basic.jpg" alt="Отбор на контрольную дату"></a><figcaption>Отбор на контрольную дату. При явно заданной дате 01.10.2026 отображаются Id 105, 101, 103; исходный список содержит шесть записей.</figcaption></figure></li><li class="figure-row"><figure><a href="assets/screenshots/operator-restored-basic.jpg"><img width="1026" height="603" src="assets/screenshots/operator-restored-basic.jpg" alt="Полный список после отбора"></a><figcaption>Полный список после отбора. Действие «Все записи» восстанавливает шесть исходных строк; экспорт использует полный список.</figcaption></figure></li><li class="step"><span class="number" aria-hidden="true">08</span><section class="card"><h3>Постоянные данные и другая дата</h3><p>Для контрольного примера повторно открыть demo-operator.csv: при 01.10.2026 демонстрационная выборка даёт Id 105, 101, 103; при 04.11.2026 — пять открытых просроченных записей. Менять только поле даты и повторять «Для оператора», не загружать «Тестовые данные» между измерениями. Вернуть 01.10.2026. В своей области использовать variant-check-XX.csv и правило карточки; ожидаемые Id могут отличаться.</p></section></li></ol><div class="file-links"><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo-operator.csv">Скачать демонстрационный CSV для отбора оператору</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/demo-operator.csv</span></p><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/snippet-view.txt">snippet-view.txt</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/snippet-view.txt</span></p><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/snippet-view-handlers.txt">snippet-view-handlers.txt</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/snippet-view-handlers.txt</span></p><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/snippet-view-xaml.txt">snippet-view-xaml.txt</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/snippet-view-xaml.txt</span></p></div></article><article id="step-10" class="chapter"><header class="doc-head"><p class="section-id">3.10. Методика</p><h2>Как перенести правило на индивидуальную область</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>Собрать условие до кода</h3><p>Из карточки выписать статус, ответственного, границы даты, порядок и ограничение числа записей. Взять фактические имена ответственных из своего контрольного CSV. Перевести каждую часть в отдельное условие; не копировать контрольные Id демонстрации в код.</p></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Сравнения и календарные границы</h3><p>t.Due.Date &lt; today.Date — срок раньше выбранного дня; &lt;= включает сам день. Диапазон задаётся двумя сравнениями через &amp;&amp;. today.Date.AddDays(-N) означает день за N суток до контрольного. «Не менее N дней назад» включает границу, «строго менее N дней назад» требует открытой нижней границы. Для статуса и Owner использовать сравнение строк с точными значениями из CSV.</p></section></li><li class="step"><span class="number" aria-hidden="true">03</span><section class="card"><h3>Порядок и ограничение</h3><p>Where отбирает записи. OrderBy задаёт первый ключ, ThenBy — следующий; OrderByDescending и ThenByDescending меняют направление соответствующего ключа. После сортировки Take(N) оставляет первые N. ToList создаёт отдельное представление. Исходный tickets не заменять результатом.</p></section></li><li class="step"><span class="number" aria-hidden="true">04</span><section class="card"><h3>Самостоятельная проверка</h3><p>Вручную отметить подходящие строки своего контрольного CSV и упорядочить их по условию. Сравнить с порядком Id в карточке на 01.10.2026. Добавить равный срок, день на границе и запись с противоположным статусом; заранее определить ожидаемое включение. Этот разбор не предоставляет готовый метод для назначенной области.</p></section></li></ol><div class="file-links"></div></article><article id="step-11" class="chapter"><header class="doc-head"><p class="section-id">3.11. Методика</p><h2>Регрессионная матрица и диагностика ошибок</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>Подготовить отрицательные примеры</h3><p>Проверять на копиях, не менять исходные CSV. Открыть variant-valid-XX.csv в Блокноте, выбрать «Файл → Сохранить как», имя invalid-id.csv, тип «Все файлы», кодировка UTF-8. В первой записи заменить только Id на abc, сохранить и импортировать. Затем заново сделать копию исходного файла invalid-date.csv и заменить дату первой записи на 31.02.2026. Для blank.csv создать пустой файл; для header-only.csv оставить только первую строку. Для wrong-header.csv заменить имя Status на State. Аналогично создать пустое Item, неизвестный Status и лишний разделитель в первой записи, каждый в отдельной копии. Проверять одно изменение за раз. Для ошибки чтения в диалоге открытия ввести имя отсутствующего файла; если Windows не допускает его выбора, проверить отказ на копии, переименованной после открытия окна выбора. Записать реальные сообщения и сохранность прежнего списка.</p></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Набор проверок</h3><p>На копиях входа проверить: верный файл; неполную строку после хорошей; неверные Id, дату и статус; пустые Item/Owner; файл только с заголовком; неверный заголовок; отсутствующий файл; строку с лишним разделителем. Для каждого случая указать вход, действие, ожидаемые записи/сообщение, фактический результат и вывод. Header-only даёт пустой список без предупреждений; неверный заголовок запрещает загрузку; ошибочная отдельная запись не уничтожает хорошие.</p></section></li><li class="step"><span class="number" aria-hidden="true">03</span><section class="card"><h3>Сохранение после отказа</h3><p>Загрузите верный CSV, затем попробовать файл с неверным заголовком. Благодаря назначению tickets только после успешного Read прежние данные остаются в памяти. Экспортировать их и сравнить все поля. Если запись файла запрещена или файл занят, окно сообщает ошибку экспорта; не считать сообщение «Файл сохранён» доказательством без проверки файла.</p></section></li><li class="step"><span class="number" aria-hidden="true">04</span><section class="card"><h3>Проверка исходной функции</h3><p>После всех исправлений нажать «Тестовые данные», «Просрочено», «Для оператора», «Все записи». Ожидаются две встроенные заявки, одна просрочка и восстановление двух строк. После повторного CSV-импорта выборка должна строиться по новому набору. Выполните полный цикл импорта и экспорта ещё раз: проверка отсекает случайные изменения за пределами D1–D3.</p></section></li><li class="figure-row"><figure><a href="assets/screenshots/roundtrip-basic.jpg"><img width="1026" height="603" src="assets/screenshots/roundtrip-basic.jpg" alt="Повторное чтение полного экспорта"></a><figcaption>Повторное чтение полного экспорта. После отбора экспортирован полный демонстрационный список. Повторное чтение этого CSV возвращает шесть записей со всеми пятью значениями.</figcaption></figure></li><li class="figure-row"><figure><a href="assets/screenshots/bad-header-message.jpg"><img width="296" height="133" src="assets/screenshots/bad-header-message.jpg" alt="Сообщение с ожидаемым заголовком"></a><figcaption>Причина отказа импорта. При отказе чтения demo-bad-header.csv сообщение указывает ожидаемый контракт. Закройте его и проверьте таблицу: прежние шесть строк должны остаться доступными.</figcaption></figure></li></ol><div class="file-links"></div></article><article id="step-12" class="chapter"><header class="doc-head"><p class="section-id">3.12. Методика</p><h2>Release, резервная копия и передача обновления</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>Подготовить запускаемую версию</h3><p>Остановить отладку Shift+F5. В верхней панели Visual Studio выбрать Release и «Сборка → Собрать решение». В обозревателе решений щёлкнуть проект правой кнопкой и выбрать «Открыть папку в проводнике» (Open Folder in File Explorer). Открыть bin/Release/net10.0-windows. Скопировать содержимое этой папки целиком в новую папку Delivery/v1.2; копия одного exe недостаточна. Не брать obj. На целевом Windows должен быть .NET Desktop Runtime 10, соответствующий архитектуре сборки; этот выпуск зависит от установленной среды и не содержит её установщик.</p></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Подготовить резервирование</h3><p>До исправлений уже сохранены BeforeFix, Delivery\v1.1 и backup\work-before.csv (шаг 4). Проверить наличие exe и остальных файлов v1.1, а также исходных двух строк в резервном CSV. Исправленную Release-сборку целиком скопировать из Work\bin\Release\net10.0-windows в Delivery\v1.2. Рабочий CSV хранится в Delivery\data\work.csv. Программу и данные хранить отдельно; перед заменой закрывать приложение. Упражнение выполняется только на учебных данных.</p></section></li><li class="step"><span class="number" aria-hidden="true">03</span><section class="card"><h3>Передать и проверить</h3><p>Запустить exe из v1.2 двойным щелчком, открыть копию data/work.csv. Проверить предупреждение, две сохранённые записи, счётчик, встроенные данные и предметную выборку. Экспортировать в data/export-check.csv и повторно импортировать. Записать версию, дату, среду, действия и реальные сообщения. Оператор получает понятную инструкцию с названиями кнопок и действиями при ошибке заголовка или чтения.</p></section></li></ol><div class="file-links"></div></article><article id="step-13" class="chapter"><header class="doc-head"><p class="section-id">3.13. Методика</p><h2>Проверенный откат и работа по своему варианту</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>Выполнить откат</h3><p>Закрыть v1.2. Сохранить диагностический экспорт отдельно, заменить учебный data/work.csv копией backup/work-before.csv. Запустить прежнюю программу из v1.1 на восстановленной копии. Сравнить исходное содержимое CSV и повторить сценарий, который работал до обновления. Намеренные дефекты прежней CSV-версии при этом остаются — откат возвращает прежнее состояние, а не исправляет его. Затем снова закрыть приложение и запустить v1.2; резервная копия остаётся нетронутой.</p></section></li><li class="figure-row"><figure><a href="assets/screenshots/rollback.jpg"><img width="1026" height="603" src="assets/screenshots/rollback.jpg" alt="Две записи после восстановления исходного файла"></a><figcaption>Прежняя версия на восстановленном CSV. В учебной папке восстановлена побайтовая копия demo-valid.csv; запущена сохранённая прежняя CSV-версия. Две исходные записи снова доступны. Намеренные дефекты этой версии сохраняются.</figcaption></figure></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Адаптировать область</h3><p>Стенд уже содержит названия своей области. После замены файлов из CSV-заготовки проверить Window.Title и значения TestData.Create: если использован общий демонстрационный архив, вернуть собственные подписи и встроенные объекты. Не менять имена пяти полей контракта и обработчик встроенных данных. Повторить исходную проверку, затем загрузить variant-XX.csv: две хорошие записи и предупреждение о строке 4. Не создавать новый проект для этого этапа.</p></section></li><li class="step"><span class="number" aria-hidden="true">03</span><section class="card"><h3>Реализовать самостоятельное правило</h3><p>После D1–D3 реализовать правило карточки в OperatorView.Select. Для фильтра использовать Where, для порядка OrderBy/ThenBy, для ограничения Take; элементы цепочки возвращают набор записей. Как и в демонстрации, не изменять tickets и не превращать экспорт в экспорт выборки. Отдельный контрольный CSV назначенного варианта содержит шесть хороших записей. Сверить указанный порядок Id на контрольную дату; затем проверить границы и полный экспорт. Это собственная задача, исправленный пример решает только демонстрационную область.</p></section></li><li class="step"><span class="number" aria-hidden="true">04</span><section class="card"><h3>Описать передачу</h3><p>Объяснить причину каждого исправления, ограничения CSV, правило области, результаты проверки и процедуру отката. Скачать свой вариант формы «Отчет о выполнении.docx»: основной — для ДКИП-4ХХпрог, расширенный — для VДКИП-31Хпрог и ДКИП-3ХХпрог. Заполнять пустые поля и места для собственных рисунков, сохраняя подписи. В разделе 3 указать полную доступную ссылку на свой репозиторий. Организационные формы из карточки практики сдаются дополнительно.</p></section></li></ol><div class="file-links"><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-fixed-example.zip">Тестовый проект для сверки · исправленный ServiceDesk</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-fixed-example.zip</span></p></div></article><article id="step-14" class="chapter"><header class="doc-head"><p class="section-id">3.14. Методика</p><h2>Расширенный маршрут: столбцы по именам</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>Вход и новый результат</h3><p>Основной маршрут уже принят: чтение, запись, дата и отбор работают. Сохранить рабочую версию и данные перед новым изменением. Требуется читать те же поля при другой очередности столбцов, сохранять старый формат и прежнюю диагностику. Выполнить этот маршрут для VДКИП-31Хпрог и ДКИП-3ХХпрог.</p></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Демонстрационный прогноз</h3><p>Открыть demo-reordered.csv в редакторе: порядок Owner;Status;Id;Due;Item. Сравнить значения с demo-operator.csv. Строгое чтение обязано отклонить такой заголовок, а новый режим — восстановить те же шесть объектов. demo-bad-header.csv дважды называет Due и не содержит Status; оба режима должны его отклонить.</p></section></li><li class="step"><span class="number" aria-hidden="true">03</span><section class="card"><h3>Адаптер вместо повторного исправления D1–D3</h3><p>Добавить отдельный файл HeaderExchange.cs из исправленного демонстрационного архива. Метод проверяет ровно пять известных уникальных имён, строит индексы канонического порядка и переставляет значения каждой полной строки. Пустые и неполные строки сохраняются на своих физических местах. Нормализованный временный файл передаётся уже принятому CsvStore.Read; finally удаляет только этот временный файл. Исходный CSV не изменяется.</p></section></li><li class="step"><span class="number" aria-hidden="true">04</span><section class="card"><h3>HeaderExchange.cs — полный демонстрационный адаптер — часть 1 из 2</h3><pre><code>using System.IO;
+using System.Text;
+
+namespace ServiceDeskWpf;
+
+// Optional extension: adapt the order, then reuse the accepted strict reader.
+internal static class HeaderExchange
+{
+    private static readonly string[] Columns = [&quot;Id&quot;, &quot;Item&quot;, &quot;Owner&quot;, &quot;Due&quot;, &quot;Status&quot;];
+
+    public static ReadResult Read(string path)
+    {
+        var lines = File.ReadAllLines(path, Encoding.UTF8);
+        if (lines.Length == 0) throw new InvalidDataException(&quot;Отсутствует заголовок CSV&quot;);
+        var header = lines[0].TrimStart(&#x27;\uFEFF&#x27;).Split(&#x27;;&#x27;);
+        if (header.Length != Columns.Length || header.Distinct(StringComparer.Ordinal).Count() != Columns.Length ||</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">04</span><section class="card"><h3>HeaderExchange.cs — полный демонстрационный адаптер — часть 2 из 2</h3><pre><code>            Columns.Any(name =&gt; !header.Contains(name, StringComparer.Ordinal)))
+            throw new InvalidDataException(&quot;Заголовок должен содержать Id, Item, Owner, Due, Status по одному разу&quot;);
+        var order = Columns.Select(name =&gt; Array.IndexOf(header, name)).ToArray();
+        var normalized = new List&lt;string&gt; { string.Join(&#x27;;&#x27;, Columns) };
+        foreach (var line in lines.Skip(1))
+        {
+            if (string.IsNullOrWhiteSpace(line)) { normalized.Add(line); continue; }
+            var cells = line.Split(&#x27;;&#x27;);
+            // Preserve malformed rows and physical line numbers for the existing validator.
+            normalized.Add(cells.Length == Columns.Length ? string.Join(&#x27;;&#x27;, order.Select(i =&gt; cells[i])) : line);
+        }
+        var temp = Path.GetTempFileName();
+        try { File.WriteAllLines(temp, normalized, Encoding.UTF8); return CsvStore.Read(temp); }
+        finally { File.Delete(temp); }
+    }
+}</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">05</span><section class="card"><h3>Связать с окном</h3><p>В MainWindow.xaml найти StackPanel с DatePicker ControlDate. После закрывающего элемента DatePicker, перед &lt;/StackPanel&gt;, добавить показанный CheckBox. В MainWindow.LoadCsv заменить только вызов CsvStore.Read(path) на выражение выбора режима ниже. CsvStore.Write не менять: экспорт всегда канонический. Собрать после добавления HeaderExchange.cs, флажка и изменения вызова.</p></section></li><li class="step"><span class="number" aria-hidden="true">06</span><section class="card"><h3>Флажок после DatePicker внутри StackPanel</h3><pre><code>&lt;CheckBox x:Name=&quot;FlexibleHeader&quot;
+          Content=&quot;Столбцы по именам (расширение)&quot;
+          VerticalAlignment=&quot;Center&quot; Margin=&quot;16,0,0,0&quot; /&gt;</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">07</span><section class="card"><h3>Выбор режима чтения в LoadCsv</h3><pre><code>var result = FlexibleHeader.IsChecked == true
+    ? HeaderExchange.Read(path)
+    : CsvStore.Read(path);</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">08</span><section class="card"><h3>Проверить новое поведение</h3><p>Сначала открыть demo-operator.csv без флажка. Затем отметить «Столбцы по именам» и открыть demo-reordered.csv: сравнить все пять значений шести записей. Экспортировать в новый файл, снять флажок и прочитать экспорт строгим режимом. После попытки открыть demo-bad-header.csv прежние шесть записей должны остаться в памяти.</p></section></li><li class="figure-row"><figure><a href="assets/screenshots/reordered.jpg"><img width="1026" height="603" src="assets/screenshots/reordered.jpg" alt="Переставленные столбцы приняты новым режимом"></a><figcaption>Переставленные столбцы приняты новым режимом. Включено чтение по именам. В окне показаны те же шесть демонстрационных записей при новом порядке столбцов входного файла.</figcaption></figure></li><li class="step"><span class="number" aria-hidden="true">09</span><section class="card"><h3>Перенести на назначенную область</h3><p>В копии собственного контрольного CSV переставить заголовок и значения каждой строки одинаковой перестановкой. Не менять поля и значения объектов. Подготовить копию с повторным именем и копию с неполной строкой между корректными. Описать правило обмена, ожидаемое поведение, сравнение полей и физические номера предупреждений. Повторить базовые проверки как регрессию.</p><p class="result"><b>Проверка.</b> Старый и новый вход дают одинаковые записи; ошибочный заголовок не меняет состояние; экспорт читается прежним строгим режимом.</p></section></li><li class="step"><span class="number" aria-hidden="true">10</span><section class="card"><h3>Готовые входы своей области</h3><p>В data стенда уже есть variant-reordered-XX.csv (шесть тех же записей в порядке Owner;Status;Id;Due;Item), variant-bad-header-XX.csv (повтор Due, нет Status) и variant-middle-error-XX.csv (неполная физическая строка 4 между хорошими). Сначала прогнозировать результат в редакторе, затем выполнить новый и строгий режимы. В неполной строке предупреждение должно ссылаться на физическую строку 4; пять остальных полных строк сохраняются. Для неизвестного имени сделать копию reordered и заменить Owner на Person; для пропущенного — удалить одну колонку из заголовка и всех строк. При неверном заголовке прежний список не изменяется.</p></section></li></ol><div class="file-links"><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/HeaderExchange.cs">HeaderExchange.cs</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/HeaderExchange.cs</span></p></div></article><article id="ref-1" class="chapter"><header class="doc-head"><p class="section-id">4.1. Полные файлы для сверки</p><h2>Исходная версия: полный файл ServiceDesk.csproj для сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>ServiceDesk.csproj</h3><pre><code>&lt;Project Sdk=&quot;Microsoft.NET.Sdk&quot;&gt;
+  &lt;PropertyGroup&gt;
+    &lt;OutputType&gt;WinExe&lt;/OutputType&gt;
+    &lt;TargetFramework&gt;net10.0-windows&lt;/TargetFramework&gt;
+    &lt;UseWPF&gt;true&lt;/UseWPF&gt;
+    &lt;Nullable&gt;enable&lt;/Nullable&gt;
+    &lt;ImplicitUsings&gt;enable&lt;/ImplicitUsings&gt;
+  &lt;/PropertyGroup&gt;
+&lt;/Project&gt;</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверка связей</h3><p>Целевая платформа net10.0-windows и UseWPF=true.</p></section></li></ol><div class="file-links"><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-ServiceDesk.csproj">ServiceDesk-ServiceDesk.csproj</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-ServiceDesk.csproj</span></p></div></article><article id="ref-2" class="chapter"><header class="doc-head"><p class="section-id">4.2. Полные файлы для сверки</p><h2>Исходная версия: полный файл App.xaml для сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>App.xaml</h3><pre><code>&lt;Application x:Class=&quot;ServiceDeskWpf.App&quot;
+             xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;&gt;
+  &lt;Application.Resources /&gt;
+&lt;/Application&gt;</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверка связей</h3><p>Имя ServiceDeskWpf.App совпадает с кодом приложения.</p></section></li></ol><div class="file-links"><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-App.xaml">ServiceDesk-App.xaml</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-App.xaml</span></p></div></article><article id="ref-3" class="chapter"><header class="doc-head"><p class="section-id">4.3. Полные файлы для сверки</p><h2>Исходная версия: полный файл App.xaml.cs для сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>App.xaml.cs — часть 1 из 2</h3><pre><code>using System.Windows;
+using System.Globalization;
+
+namespace ServiceDeskWpf;
+
+public partial class App : Application
+{
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        base.OnStartup(e);
+        var args = e.Args.ToList();
+        var checkDate = new DateTime(2026, 10, 1);
+        int dateIndex = args.IndexOf(&quot;--date&quot;);
+        if (dateIndex &gt;= 0)
+        {
+            if (dateIndex + 1 &gt;= args.Count || !DateTime.TryParseExact(args[dateIndex + 1],
+                &quot;yyyy-MM-dd&quot;, CultureInfo.InvariantCulture, DateTimeStyles.None, out checkDate))
+            {</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>App.xaml.cs — часть 2 из 2</h3><pre><code>                MessageBox.Show(&quot;Параметр --date требует дату yyyy-MM-dd&quot;, &quot;Ошибка даты&quot;);
+                Shutdown(2);
+                return;
+            }
+            args.RemoveRange(dateIndex, 2);
+        }
+        var runArgs = args.ToArray();
+        if (runArgs.Length == 1 &amp;&amp; runArgs[0] == &quot;--self-test&quot;)
+        {
+            var rows = TestData.Create(checkDate);
+            Console.WriteLine($&quot;test-records={rows.Count}; overdue={TestData.CountOverdue(rows, checkDate)}&quot;);
+            Shutdown();
+            return;
+        }
+        new MainWindow(runArgs.Length == 1 &amp;&amp; runArgs[0] == &quot;--demo&quot;, checkDate).Show();
+    }
+}</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверка связей</h3><p>Разбор параметра даты и запуск нужного MainWindow.</p></section></li></ol><div class="file-links"><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-App.xaml.cs">ServiceDesk-App.xaml.cs</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-App.xaml.cs</span></p></div></article><article id="ref-4" class="chapter"><header class="doc-head"><p class="section-id">4.4. Полные файлы для сверки</p><h2>Исходная версия: полный файл MainWindow.xaml для сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>MainWindow.xaml — часть 1 из 2</h3><pre><code>&lt;Window x:Class=&quot;ServiceDeskWpf.MainWindow&quot;
+        xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+        xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+        Title=&quot;Сервисный журнал учебного центра&quot; Width=&quot;1040&quot; Height=&quot;610&quot; MinWidth=&quot;800&quot; MinHeight=&quot;480&quot;
+        Background=&quot;White&quot; FontFamily=&quot;Segoe UI&quot; FontSize=&quot;14&quot; Language=&quot;ru-RU&quot;&gt;
+  &lt;Window.Resources&gt;
+    &lt;Style TargetType=&quot;Button&quot;&gt;
+      &lt;Setter Property=&quot;Padding&quot; Value=&quot;14,8&quot; /&gt;
+      &lt;Setter Property=&quot;Margin&quot; Value=&quot;0,0,8,8&quot; /&gt;
+      &lt;Setter Property=&quot;MinHeight&quot; Value=&quot;36&quot; /&gt;
+    &lt;/Style&gt;
+  &lt;/Window.Resources&gt;
+  &lt;Grid Margin=&quot;20&quot;&gt;
+    &lt;Grid.RowDefinitions&gt;
+      &lt;RowDefinition Height=&quot;Auto&quot; /&gt;
+      &lt;RowDefinition Height=&quot;Auto&quot; /&gt;
+      &lt;RowDefinition Height=&quot;*&quot; /&gt;
+      &lt;RowDefinition Height=&quot;Auto&quot; /&gt;
+    &lt;/Grid.RowDefinitions&gt;
+    &lt;StackPanel Orientation=&quot;Horizontal&quot; Margin=&quot;0,0,0,16&quot;&gt;
+      &lt;TextBlock Text=&quot;Контрольная дата&quot; VerticalAlignment=&quot;Center&quot; Margin=&quot;0,0,12,0&quot; /&gt;</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>MainWindow.xaml — часть 2 из 2</h3><pre><code>      &lt;DatePicker x:Name=&quot;ControlDate&quot; Width=&quot;160&quot; SelectedDateFormat=&quot;Short&quot;
+                  SelectedDateChanged=&quot;ControlDate_Changed&quot; AutomationProperties.Name=&quot;Контрольная дата&quot; /&gt;
+    &lt;/StackPanel&gt;
+    &lt;WrapPanel Grid.Row=&quot;1&quot; Margin=&quot;0,0,0,8&quot;&gt;
+      &lt;Button Content=&quot;Тестовые данные&quot; Click=&quot;LoadTestData_Click&quot; /&gt;
+      &lt;Button Content=&quot;Просрочено&quot; Click=&quot;CountOverdue_Click&quot; /&gt;
+    &lt;/WrapPanel&gt;
+    &lt;DataGrid x:Name=&quot;TicketsGrid&quot; Grid.Row=&quot;2&quot; AutoGenerateColumns=&quot;False&quot; IsReadOnly=&quot;True&quot;
+              CanUserAddRows=&quot;False&quot; RowHeight=&quot;34&quot; HeadersVisibility=&quot;Column&quot; GridLinesVisibility=&quot;Horizontal&quot;&gt;
+      &lt;DataGrid.Columns&gt;
+        &lt;DataGridTextColumn Header=&quot;Id&quot; Binding=&quot;{Binding Id}&quot; Width=&quot;70&quot; /&gt;
+        &lt;DataGridTextColumn Header=&quot;Объект&quot; Binding=&quot;{Binding Item}&quot; Width=&quot;*&quot; /&gt;
+        &lt;DataGridTextColumn Header=&quot;Ответственный&quot; Binding=&quot;{Binding Owner}&quot; Width=&quot;*&quot; /&gt;
+        &lt;DataGridTextColumn Header=&quot;Срок&quot; Binding=&quot;{Binding Due, StringFormat=dd.MM.yyyy}&quot; Width=&quot;140&quot; /&gt;
+        &lt;DataGridTextColumn Header=&quot;Статус&quot; Binding=&quot;{Binding Status}&quot; Width=&quot;140&quot; /&gt;
+      &lt;/DataGrid.Columns&gt;
+    &lt;/DataGrid&gt;
+    &lt;TextBlock x:Name=&quot;StatusText&quot; Grid.Row=&quot;3&quot; Margin=&quot;0,16,0,0&quot; Text=&quot;Загрузить встроенные данные для первой проверки&quot; /&gt;
+  &lt;/Grid&gt;
+&lt;/Window&gt;</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверка связей</h3><p>Имена ControlDate, TicketsGrid, StatusText и обработчики Click совпадают с кодом.</p></section></li></ol><div class="file-links"><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-MainWindow.xaml">ServiceDesk-MainWindow.xaml</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-MainWindow.xaml</span></p></div></article><article id="ref-5" class="chapter"><header class="doc-head"><p class="section-id">4.5. Полные файлы для сверки</p><h2>Исходная версия: полный файл MainWindow.xaml.cs для сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>MainWindow.xaml.cs — часть 1 из 2</h3><pre><code>using System.Windows;
+
+namespace ServiceDeskWpf;
+
+internal record Ticket(int Id, string Item, string Owner, DateTime Due, string Status);
+
+internal static class TestData
+{
+    public static List&lt;Ticket&gt; Create(DateTime today) =&gt;
+    [
+        new Ticket(101, &quot;Проектор&quot;, &quot;Ирина&quot;, today.AddDays(-2), &quot;Открыта&quot;),
+        new Ticket(102, &quot;Ноутбук&quot;, &quot;Павел&quot;, today.AddDays(-1), &quot;Завершена&quot;)
+    ];
+
+    public static int CountOverdue(IEnumerable&lt;Ticket&gt; tickets, DateTime today) =&gt;
+        tickets.Count(t =&gt; t.Status != &quot;Завершена&quot; &amp;&amp; t.Due.Date &lt; today.Date);
+}
+
+public partial class MainWindow : Window
+{
+    private List&lt;Ticket&gt; tickets = new();
+    private DateTime CheckDate =&gt; ControlDate.SelectedDate!.Value.Date;
+
+    public MainWindow(bool showTestData = false, DateTime? checkDate = null)</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>MainWindow.xaml.cs — часть 2 из 2</h3><pre><code>    {
+        InitializeComponent();
+        ControlDate.SelectedDate = checkDate ?? new DateTime(2026, 10, 1);
+        if (showTestData) Loaded += (_, _) =&gt; LoadTestData();
+    }
+
+    private void ControlDate_Changed(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+    {
+        if (ControlDate.SelectedDate is null)
+            ControlDate.SelectedDate = new DateTime(2026, 10, 1);
+    }
+
+    private void LoadTestData_Click(object sender, RoutedEventArgs e) =&gt; LoadTestData();
+
+    private void LoadTestData()
+    {
+        tickets = TestData.Create(CheckDate);
+        TicketsGrid.ItemsSource = tickets.ToList();
+        StatusText.Text = $&quot;Тестовых записей: {tickets.Count}&quot;;
+    }
+
+    private void CountOverdue_Click(object sender, RoutedEventArgs e) =&gt;
+        StatusText.Text = $&quot;Просрочено: {TestData.CountOverdue(tickets, CheckDate)}&quot;;
+}</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверка связей</h3><p>Список, встроенные записи, выбранная дата и обработчики образуют один согласованный файл.</p></section></li></ol><div class="file-links"><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-MainWindow.xaml.cs">ServiceDesk-MainWindow.xaml.cs</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-MainWindow.xaml.cs</span></p></div></article><article id="ref-6" class="chapter"><header class="doc-head"><p class="section-id">4.6. Полные файлы для сверки</p><h2>Исправленная версия: полный файл ServiceDesk-fixed.csproj для сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>ServiceDesk-fixed.csproj</h3><pre><code>&lt;Project Sdk=&quot;Microsoft.NET.Sdk&quot;&gt;
+  &lt;PropertyGroup&gt;
+    &lt;OutputType&gt;WinExe&lt;/OutputType&gt;
+    &lt;TargetFramework&gt;net10.0-windows&lt;/TargetFramework&gt;
+    &lt;UseWPF&gt;true&lt;/UseWPF&gt;
+    &lt;RootNamespace&gt;ServiceDeskWpf&lt;/RootNamespace&gt;
+    &lt;Nullable&gt;enable&lt;/Nullable&gt;
+    &lt;ImplicitUsings&gt;enable&lt;/ImplicitUsings&gt;
+  &lt;/PropertyGroup&gt;
+&lt;/Project&gt;</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверка связей</h3><p>Сопоставить файл с проектом образца.</p></section></li></ol><div class="file-links"><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-fixed-ServiceDesk-fixed.csproj">ServiceDesk-fixed-ServiceDesk-fixed.csproj</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-fixed-ServiceDesk-fixed.csproj</span></p></div></article><article id="ref-7" class="chapter"><header class="doc-head"><p class="section-id">4.7. Полные файлы для сверки</p><h2>Исправленная версия: полный файл App.xaml для сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>App.xaml</h3><pre><code>&lt;Application x:Class=&quot;ServiceDeskWpf.App&quot;
+             xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;&gt;
+  &lt;Application.Resources /&gt;
+&lt;/Application&gt;</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверка связей</h3><p>Имя ServiceDeskWpf.App совпадает с кодом приложения.</p></section></li></ol><div class="file-links"><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-fixed-App.xaml">ServiceDesk-fixed-App.xaml</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-fixed-App.xaml</span></p></div></article><article id="ref-8" class="chapter"><header class="doc-head"><p class="section-id">4.8. Полные файлы для сверки</p><h2>Исправленная версия: полный файл App.xaml.cs для сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>App.xaml.cs — часть 1 из 2</h3><pre><code>using System.IO;
+using System.Windows;
+using System.Globalization;
+
+namespace ServiceDeskWpf;
+
+public partial class App : Application
+{
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        base.OnStartup(e);
+        var args = e.Args.ToList();
+        var checkDate = new DateTime(2026, 10, 1);
+        int dateIndex = args.IndexOf(&quot;--date&quot;);
+        if (dateIndex &gt;= 0)
+        {
+            if (dateIndex + 1 &gt;= args.Count || !DateTime.TryParseExact(args[dateIndex + 1],
+                &quot;yyyy-MM-dd&quot;, CultureInfo.InvariantCulture, DateTimeStyles.None, out checkDate))
+            {
+                MessageBox.Show(&quot;Параметр --date требует дату yyyy-MM-dd&quot;, &quot;Ошибка даты&quot;);
+                Shutdown(2);
+                return;
+            }
+            args.RemoveRange(dateIndex, 2);
+        }
+        var runArgs = args.ToArray();
+        if (runArgs.Length == 1 &amp;&amp; runArgs[0] == &quot;--test-built-in&quot;)</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>App.xaml.cs — часть 2 из 2</h3><pre><code>        {
+            var rows = TestData.Create(checkDate);
+            Console.WriteLine($&quot;test-records={rows.Count}; overdue={CsvStore.CountOverdue(rows, checkDate)}&quot;);
+            Shutdown();
+            return;
+        }
+        if (runArgs.Length == 2 &amp;&amp; runArgs[0] == &quot;--self-test&quot;)
+        {
+            var result = CsvStore.Read(runArgs[1]);
+            var target = Path.GetTempFileName();
+            try
+            {
+                CsvStore.Write(target, result.Tickets);
+                var again = CsvStore.Read(target);
+                if (again.Warnings.Count != 0 || !result.Tickets.SequenceEqual(again.Tickets))
+                    throw new InvalidOperationException(&quot;Повторный импорт не совпал&quot;);
+                Console.WriteLine($&quot;tickets={result.Tickets.Count}; warnings={result.Warnings.Count}; overdue={CsvStore.CountOverdue(result.Tickets, checkDate)}&quot;);
+                foreach (var warning in result.Warnings) Console.WriteLine(warning);
+            }
+            finally { File.Delete(target); }
+            Shutdown();
+            return;
+        }
+        new MainWindow(runArgs.Length == 2 &amp;&amp; runArgs[0] == &quot;--demo&quot; ? runArgs[1] : null, checkDate).Show();
+    }
+}</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверка связей</h3><p>Разбор параметра даты и запуск нужного MainWindow.</p></section></li></ol><div class="file-links"><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-fixed-App.xaml.cs">ServiceDesk-fixed-App.xaml.cs</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-fixed-App.xaml.cs</span></p></div></article><article id="ref-9" class="chapter"><header class="doc-head"><p class="section-id">4.9. Полные файлы для сверки</p><h2>Исправленная версия: полный файл MainWindow.xaml для сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>MainWindow.xaml — часть 1 из 2</h3><pre><code>&lt;Window x:Class=&quot;ServiceDeskWpf.MainWindow&quot;
+        xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+        xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+        Title=&quot;Сервисный журнал учебного центра&quot; Width=&quot;1040&quot; Height=&quot;610&quot; MinWidth=&quot;800&quot; MinHeight=&quot;480&quot;
+        Background=&quot;White&quot; FontFamily=&quot;Segoe UI&quot; FontSize=&quot;14&quot; Language=&quot;ru-RU&quot;&gt;
+  &lt;Window.Resources&gt;
+    &lt;Style TargetType=&quot;Button&quot;&gt;
+      &lt;Setter Property=&quot;Padding&quot; Value=&quot;14,8&quot; /&gt;
+      &lt;Setter Property=&quot;Margin&quot; Value=&quot;0,0,8,8&quot; /&gt;
+      &lt;Setter Property=&quot;MinHeight&quot; Value=&quot;36&quot; /&gt;
+    &lt;/Style&gt;
+  &lt;/Window.Resources&gt;
+  &lt;Grid Margin=&quot;20&quot;&gt;
+    &lt;Grid.RowDefinitions&gt;
+      &lt;RowDefinition Height=&quot;Auto&quot; /&gt;
+      &lt;RowDefinition Height=&quot;Auto&quot; /&gt;
+      &lt;RowDefinition Height=&quot;*&quot; /&gt;
+      &lt;RowDefinition Height=&quot;Auto&quot; /&gt;
+    &lt;/Grid.RowDefinitions&gt;
+    &lt;StackPanel Orientation=&quot;Horizontal&quot; Margin=&quot;0,0,0,16&quot;&gt;
+      &lt;TextBlock Text=&quot;Контрольная дата&quot; VerticalAlignment=&quot;Center&quot; Margin=&quot;0,0,12,0&quot; /&gt;
+      &lt;DatePicker x:Name=&quot;ControlDate&quot; Width=&quot;160&quot; SelectedDateFormat=&quot;Short&quot;
+                  SelectedDateChanged=&quot;ControlDate_Changed&quot; AutomationProperties.Name=&quot;Контрольная дата&quot; /&gt;</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>MainWindow.xaml — часть 2 из 2</h3><pre><code>      &lt;CheckBox x:Name=&quot;FlexibleHeader&quot; Content=&quot;Столбцы по именам (расширение)&quot; VerticalAlignment=&quot;Center&quot; Margin=&quot;24,0,0,0&quot; /&gt;
+    &lt;/StackPanel&gt;
+    &lt;WrapPanel Grid.Row=&quot;1&quot; Margin=&quot;0,0,0,8&quot;&gt;
+      &lt;Button Content=&quot;Тестовые данные&quot; Click=&quot;LoadTestData_Click&quot; /&gt;
+      &lt;Button Content=&quot;Открыть CSV&quot; Click=&quot;OpenCsv_Click&quot; /&gt;
+      &lt;Button Content=&quot;Экспорт CSV&quot; Click=&quot;SaveCsv_Click&quot; /&gt;
+      &lt;Button Content=&quot;Просрочено&quot; Click=&quot;CountOverdue_Click&quot; /&gt;
+      &lt;Button Content=&quot;Для оператора&quot; Click=&quot;SelectForOperator_Click&quot; /&gt;
+      &lt;Button Content=&quot;Все записи&quot; Click=&quot;ShowAll_Click&quot; /&gt;
+    &lt;/WrapPanel&gt;
+    &lt;DataGrid x:Name=&quot;TicketsGrid&quot; Grid.Row=&quot;2&quot; AutoGenerateColumns=&quot;False&quot; IsReadOnly=&quot;True&quot;
+              CanUserAddRows=&quot;False&quot; RowHeight=&quot;34&quot; HeadersVisibility=&quot;Column&quot; GridLinesVisibility=&quot;Horizontal&quot;&gt;
+      &lt;DataGrid.Columns&gt;
+        &lt;DataGridTextColumn Header=&quot;Id&quot; Binding=&quot;{Binding Id}&quot; Width=&quot;70&quot; /&gt;
+        &lt;DataGridTextColumn Header=&quot;Объект&quot; Binding=&quot;{Binding Item}&quot; Width=&quot;*&quot; /&gt;
+        &lt;DataGridTextColumn Header=&quot;Ответственный&quot; Binding=&quot;{Binding Owner}&quot; Width=&quot;*&quot; /&gt;
+        &lt;DataGridTextColumn Header=&quot;Срок&quot; Binding=&quot;{Binding Due, StringFormat=dd.MM.yyyy}&quot; Width=&quot;140&quot; /&gt;
+        &lt;DataGridTextColumn Header=&quot;Статус&quot; Binding=&quot;{Binding Status}&quot; Width=&quot;140&quot; /&gt;
+      &lt;/DataGrid.Columns&gt;
+    &lt;/DataGrid&gt;
+    &lt;TextBlock x:Name=&quot;StatusText&quot; Grid.Row=&quot;3&quot; Margin=&quot;0,16,0,0&quot; Text=&quot;Загрузить встроенные данные для первой проверки&quot; /&gt;
+  &lt;/Grid&gt;
+&lt;/Window&gt;</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверка связей</h3><p>Имена ControlDate, TicketsGrid, StatusText и обработчики Click совпадают с кодом.</p></section></li></ol><div class="file-links"><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-fixed-MainWindow.xaml">ServiceDesk-fixed-MainWindow.xaml</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-fixed-MainWindow.xaml</span></p></div></article><article id="ref-10" class="chapter"><header class="doc-head"><p class="section-id">4.10. Полные файлы для сверки</p><h2>Исправленная версия: полный файл MainWindow.xaml.cs для сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>MainWindow.xaml.cs — часть 1 из 6</h3><pre><code>using System.Globalization;
+using System.IO;
+using System.Text;
+using System.Windows;
+using Microsoft.Win32;
+
+namespace ServiceDeskWpf;
+
+internal record Ticket(int Id, string Item, string Owner, DateTime Due, string Status);
+internal record ReadResult(List&lt;Ticket&gt; Tickets, List&lt;string&gt; Warnings);
+
+internal static class TestData
+{
+    public static List&lt;Ticket&gt; Create(DateTime today) =&gt;
+    [
+        new Ticket(101, &quot;Проектор&quot;, &quot;Ирина&quot;, today.AddDays(-2), &quot;Открыта&quot;),
+        new Ticket(102, &quot;Ноутбук&quot;, &quot;Павел&quot;, today.AddDays(-1), &quot;Завершена&quot;)
+    ];
+
+    public static int CountOverdue(IEnumerable&lt;Ticket&gt; tickets, DateTime today) =&gt;
+        tickets.Count(t =&gt; t.Status != &quot;Завершена&quot; &amp;&amp; t.Due.Date &lt; today.Date);
+}
+
+internal static class CsvStore
+{</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>MainWindow.xaml.cs — часть 2 из 6</h3><pre><code>    private const string Header = &quot;Id;Item;Owner;Due;Status&quot;;
+
+    public static ReadResult Read(string path)
+    {
+        var tickets = new List&lt;Ticket&gt;();
+        var warnings = new List&lt;string&gt;();
+        var lines = File.ReadAllLines(path, Encoding.UTF8);
+        if (lines.Length == 0 || lines[0].TrimStart(&#x27;\uFEFF&#x27;) != Header)
+            throw new InvalidDataException($&quot;Ожидается заголовок {Header}&quot;);
+        for (int index = 1; index &lt; lines.Length; index++)
+        {
+            if (string.IsNullOrWhiteSpace(lines[index])) continue;
+            var cells = lines[index].Split(&#x27;;&#x27;);
+            string? reason = null;
+            if (cells.Length != 5) reason = &quot;ожидается пять полей&quot;;
+            else if (!int.TryParse(cells[0], out _)) reason = &quot;неверный Id&quot;;
+            else if (string.IsNullOrWhiteSpace(cells[1]) || string.IsNullOrWhiteSpace(cells[2])) reason = &quot;пустое обязательное поле&quot;;
+            else if (!DateTime.TryParseExact(cells[3], &quot;dd.MM.yyyy&quot;, CultureInfo.InvariantCulture, DateTimeStyles.None, out _)) reason = &quot;неверная дата&quot;;
+            else if (cells[4] != &quot;Открыта&quot; &amp;&amp; cells[4] != &quot;Завершена&quot;) reason = &quot;неверный статус&quot;;
+            if (reason != null) { warnings.Add($&quot;Строка {index + 1}: {reason}&quot;); continue; }
+            tickets.Add(new Ticket(int.Parse(cells[0], CultureInfo.InvariantCulture), cells[1], cells[2],
+                DateTime.ParseExact(cells[3], &quot;dd.MM.yyyy&quot;, CultureInfo.InvariantCulture), cells[4]));
+        }
+        return new ReadResult(tickets, warnings);
+    }</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>MainWindow.xaml.cs — часть 3 из 6</h3><pre><code>
+    public static void Write(string path, IEnumerable&lt;Ticket&gt; tickets)
+    {
+        var lines = new List&lt;string&gt; { Header };
+        foreach (var t in tickets)
+        {
+            if (new[] { t.Item, t.Owner, t.Status }.Any(value =&gt; value.Contains(&#x27;;&#x27;) || value.Contains(&#x27;\n&#x27;) || value.Contains(&#x27;\r&#x27;)))
+                throw new InvalidDataException(&quot;В поле нельзя использовать разделитель или перевод строки&quot;);
+            lines.Add($&quot;{t.Id};{t.Item};{t.Owner};{t.Due.ToString(&quot;dd.MM.yyyy&quot;, CultureInfo.InvariantCulture)};{t.Status}&quot;);
+        }
+        File.WriteAllLines(path, lines, Encoding.UTF8);
+    }
+
+    public static int CountOverdue(IEnumerable&lt;Ticket&gt; tickets, DateTime today) =&gt;
+        tickets.Count(t =&gt; t.Status != &quot;Завершена&quot; &amp;&amp; t.Due.Date &lt; today.Date);
+}
+
+internal static class OperatorView
+{
+    public static List&lt;Ticket&gt; Select(IEnumerable&lt;Ticket&gt; rows, DateTime today) =&gt;
+        rows.Where(t =&gt; t.Status == &quot;Открыта&quot; &amp;&amp; t.Due.Date &lt; today.Date)
+            .OrderBy(t =&gt; t.Due).ThenBy(t =&gt; t.Id).ToList();
+}
+
+public partial class MainWindow : Window</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>MainWindow.xaml.cs — часть 4 из 6</h3><pre><code>{
+    private List&lt;Ticket&gt; tickets = new();
+    private DateTime CheckDate =&gt; ControlDate.SelectedDate!.Value.Date;
+
+    public MainWindow(string? demoPath = null, DateTime? checkDate = null)
+    {
+        InitializeComponent();
+        ControlDate.SelectedDate = checkDate ?? new DateTime(2026, 10, 1);
+        if (demoPath != null) Loaded += (_, _) =&gt;
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.ApplicationIdle,
+                new Action(() =&gt; LoadCsv(demoPath)));
+    }
+
+    private void ControlDate_Changed(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+    {
+        if (ControlDate.SelectedDate is null)
+            ControlDate.SelectedDate = new DateTime(2026, 10, 1);
+    }
+
+    private void LoadTestData_Click(object sender, RoutedEventArgs e) =&gt; LoadTestData();
+
+    private void LoadTestData()
+    {
+        tickets = TestData.Create(CheckDate);
+        TicketsGrid.ItemsSource = tickets.ToList();</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>MainWindow.xaml.cs — часть 5 из 6</h3><pre><code>        StatusText.Text = $&quot;Тестовых записей: {tickets.Count}&quot;;
+    }
+
+    private void OpenCsv_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new OpenFileDialog { Filter = &quot;CSV (*.csv)|*.csv&quot; };
+        if (dialog.ShowDialog() == true) LoadCsv(dialog.FileName);
+    }
+
+    private void LoadCsv(string path)
+    {
+        try
+        {
+            var result = FlexibleHeader.IsChecked == true ? HeaderExchange.Read(path) : CsvStore.Read(path);
+            tickets = result.Tickets;
+            TicketsGrid.ItemsSource = tickets.ToList();
+            StatusText.Text = $&quot;Загружено: {tickets.Count}; пропущено: {result.Warnings.Count}&quot;;
+            if (result.Warnings.Count &gt; 0)
+                MessageBox.Show(string.Join(Environment.NewLine, result.Warnings), &quot;Предупреждения импорта&quot;);
+        }
+        catch (Exception ex) { MessageBox.Show(ex.Message, &quot;Ошибка импорта&quot;); }
+    }
+
+    private void SaveCsv_Click(object sender, RoutedEventArgs e)
+    {</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>MainWindow.xaml.cs — часть 6 из 6</h3><pre><code>        var dialog = new SaveFileDialog { Filter = &quot;CSV (*.csv)|*.csv&quot;, FileName = &quot;export.csv&quot; };
+        if (dialog.ShowDialog() != true) return;
+        try { CsvStore.Write(dialog.FileName, tickets); StatusText.Text = &quot;Файл сохранён&quot;; }
+        catch (Exception ex) { MessageBox.Show(ex.Message, &quot;Ошибка экспорта&quot;); }
+    }
+
+    private void SelectForOperator_Click(object sender, RoutedEventArgs e)
+    {
+        var selected = OperatorView.Select(tickets, CheckDate);
+        TicketsGrid.ItemsSource = selected;
+        StatusText.Text = $&quot;Для оператора: {selected.Count}; всего: {tickets.Count}&quot;;
+    }
+
+    private void ShowAll_Click(object sender, RoutedEventArgs e)
+    {
+        TicketsGrid.ItemsSource = tickets.ToList();
+        StatusText.Text = $&quot;Все записи: {tickets.Count}&quot;;
+    }
+
+    private void CountOverdue_Click(object sender, RoutedEventArgs e) =&gt;
+        StatusText.Text = $&quot;Просрочено: {CsvStore.CountOverdue(tickets, CheckDate)}&quot;;
+}</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверка связей</h3><p>Список, встроенные записи, выбранная дата и обработчики образуют один согласованный файл.</p></section></li></ol><div class="file-links"><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-fixed-MainWindow.xaml.cs">ServiceDesk-fixed-MainWindow.xaml.cs</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/ServiceDesk-fixed-MainWindow.xaml.cs</span></p></div></article><article id="ref-11" class="chapter"><header class="doc-head"><p class="section-id">4.11. Полные файлы для сверки</p><h2>Расширение: полный файл HeaderExchange.cs для сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>HeaderExchange.cs — часть 1 из 2</h3><pre><code>using System.IO;
+using System.Text;
+
+namespace ServiceDeskWpf;
+
+// Optional extension: adapt the order, then reuse the accepted strict reader.
+internal static class HeaderExchange
+{
+    private static readonly string[] Columns = [&quot;Id&quot;, &quot;Item&quot;, &quot;Owner&quot;, &quot;Due&quot;, &quot;Status&quot;];
+
+    public static ReadResult Read(string path)
+    {
+        var lines = File.ReadAllLines(path, Encoding.UTF8);
+        if (lines.Length == 0) throw new InvalidDataException(&quot;Отсутствует заголовок CSV&quot;);
+        var header = lines[0].TrimStart(&#x27;\uFEFF&#x27;).Split(&#x27;;&#x27;);
+        if (header.Length != Columns.Length || header.Distinct(StringComparer.Ordinal).Count() != Columns.Length ||</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>HeaderExchange.cs — часть 2 из 2</h3><pre><code>            Columns.Any(name =&gt; !header.Contains(name, StringComparer.Ordinal)))
+            throw new InvalidDataException(&quot;Заголовок должен содержать Id, Item, Owner, Due, Status по одному разу&quot;);
+        var order = Columns.Select(name =&gt; Array.IndexOf(header, name)).ToArray();
+        var normalized = new List&lt;string&gt; { string.Join(&#x27;;&#x27;, Columns) };
+        foreach (var line in lines.Skip(1))
+        {
+            if (string.IsNullOrWhiteSpace(line)) { normalized.Add(line); continue; }
+            var cells = line.Split(&#x27;;&#x27;);
+            // Preserve malformed rows and physical line numbers for the existing validator.
+            normalized.Add(cells.Length == Columns.Length ? string.Join(&#x27;;&#x27;, order.Select(i =&gt; cells[i])) : line);
+        }
+        var temp = Path.GetTempFileName();
+        try { File.WriteAllLines(temp, normalized, Encoding.UTF8); return CsvStore.Read(temp); }
+        finally { File.Delete(temp); }
+    }
+}</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверка связей</h3><p>Адаптер добавляется только при выполнении расширенного маршрута. CsvStore.Read и CsvStore.Write основного контракта сохраняются.</p></section></li></ol><div class="file-links"><p><a href="https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/HeaderExchange.cs">HeaderExchange.cs</a><br><span>https://olgakraven.github.io/2026-2027-09.02.07-prog-pp-pm.04-sem07-part01/downloads/HeaderExchange.cs</span></p></div></article></main></body></html>

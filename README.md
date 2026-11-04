@@ -6,4 +6,5 @@
 - [Индивидуальные задания](site/areas.html)
 - [Методические рекомендации с общим заданием (PDF)](site/downloads/assignment.pdf)
 - [Предметные области (PDF)](site/downloads/guide.pdf)
-- [Общий шаблон отчёта](site/downloads/report-template.md)
+- [Отчёт для ДКИП-4ХХпрог](site/downloads/Отчет%20о%20выполнении.docx)
+- [Отчёт для VДКИП-31Хпрог и ДКИП-3ХХпрог](site/downloads/extended/Отчет%20о%20выполнении.docx)

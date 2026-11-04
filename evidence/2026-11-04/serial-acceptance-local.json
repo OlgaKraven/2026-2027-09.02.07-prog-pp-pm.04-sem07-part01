@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-04",
+  "checks": {
+    "staged_builds": 7,
+    "behavior_checks_on_printed_code": 116,
+    "own_stands": 30,
+    "files_per_stand": 17,
+    "csv_inputs_per_stand": 6,
+    "method_pages": 71,
+    "areas_pages": 62,
+    "basic_report_pages": 26,
+    "extended_report_pages": 29,
+    "basic_figures": 26,
+    "extended_figures": 30,
+    "all_captions_match_source": true,
+    "master_preserve_parts_identical": true,
+    "native_word_fill_and_picture_pass": true,
+    "ui_export_after_filter_all_six_rows_all_five_fields_equal": true,
+    "ui_bad_header_keeps_six_rows": true,
+    "ui_partial_import_keeps_two_rows_and_physical_line_four": true
+  },
+  "files": {
+    "site\\downloads\\assignment.pdf": "aa1b3e69c81d78f89b21c790ce222708d25cc6b10b469c160bf70cde84cb6b23",
+    "site\\downloads\\guide.pdf": "0bda6d674ef94f9d069a24d7cf2d291934471b8128f3193e515edef002b21639",
+    "forms\\basic\\Отчет о выполнении.docx": "cf280cca8862d5812e3dc0e3508d5bc3ee511660b12876fd48ce4fa7d06237f7",
+    "forms\\extended\\Отчет о выполнении.docx": "605e3751d0d327ebf474c8bf2ec12aef7e4e8e36b3cbf9f09b04000bed030ca8"
+  }
+}
