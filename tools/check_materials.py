@@ -61,7 +61,8 @@ files={x['name']:x['path'] for x in c['code_files']};expected=[]
 for s in c['guide']+c['reference']:
  for b in s['blocks']:
   if b['kind']!='code':continue
-  if 'code' in b:value=b['code']
+  if 'code' in b:
+   value=b['code'];assert b.get('text')==value,('importable inline code',b['title'])
   else:
    lines=(R/files[b['code_file']]).read_text(encoding='utf-8').splitlines();a,z=b.get('code_lines',[0,len(lines)])
    assert 0<=a<z<=len(lines),(b['code_file'],a,z,len(lines))

@@ -689,12 +689,14 @@
         {
           "kind": "code",
           "title": "Флажок после DatePicker внутри StackPanel",
-          "code": "<CheckBox x:Name=\"FlexibleHeader\"\n          Content=\"Столбцы по именам (расширение)\"\n          VerticalAlignment=\"Center\" Margin=\"16,0,0,0\" />"
+          "code": "<CheckBox x:Name=\"FlexibleHeader\"\n          Content=\"Столбцы по именам (расширение)\"\n          VerticalAlignment=\"Center\" Margin=\"16,0,0,0\" />",
+          "text": "<CheckBox x:Name=\"FlexibleHeader\"\n          Content=\"Столбцы по именам (расширение)\"\n          VerticalAlignment=\"Center\" Margin=\"16,0,0,0\" />"
         },
         {
           "kind": "code",
           "title": "Выбор режима чтения в LoadCsv",
-          "code": "var result = FlexibleHeader.IsChecked == true\n    ? HeaderExchange.Read(path)\n    : CsvStore.Read(path);"
+          "code": "var result = FlexibleHeader.IsChecked == true\n    ? HeaderExchange.Read(path)\n    : CsvStore.Read(path);",
+          "text": "var result = FlexibleHeader.IsChecked == true\n    ? HeaderExchange.Read(path)\n    : CsvStore.Read(path);"
         },
         {
           "kind": "text",
