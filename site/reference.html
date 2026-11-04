@@ -1,0 +1,421 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Код образца · ПП ПМ.04</title><link rel="stylesheet" href="assets/style.css"><link rel="icon" href="assets/favicon.svg"></head><body><a class="skip" href="#main">К содержанию</a><nav aria-label="Материалы практики"><a href="index.html">Задание и файлы</a><a href="lessons.html">Методика</a><a href="areas.html">Предметные области</a><a href="reference.html" aria-current="page">Код образца</a></nav><main id="main"><div class="hero"><p class="section-id">Производственная практика ПМ.04</p><h1>Полные файлы для сверки</h1><p>Исходная и исправленная демонстрационные версии. Эти листинги доступны для чтения; их повторное переписывание не назначается.</p></div><div class="actions"><a class="button" href="downloads/ServiceDesk-source.zip">ServiceDesk-source.zip</a><a class="button" href="downloads/ServiceDesk-fixed-example.zip">ServiceDesk-fixed-example.zip</a></div><article id="ref-1" class="chapter"><header class="doc-head"><p class="section-id">Справочник 1</p><h2>Исходная версия: полный файл ServiceDesk.csproj для сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>ServiceDesk.csproj</h3><pre><code>&lt;Project Sdk=&quot;Microsoft.NET.Sdk&quot;&gt;
+  &lt;PropertyGroup&gt;
+    &lt;OutputType&gt;WinExe&lt;/OutputType&gt;
+    &lt;TargetFramework&gt;net10.0-windows&lt;/TargetFramework&gt;
+    &lt;UseWPF&gt;true&lt;/UseWPF&gt;
+    &lt;Nullable&gt;enable&lt;/Nullable&gt;
+    &lt;ImplicitUsings&gt;enable&lt;/ImplicitUsings&gt;
+  &lt;/PropertyGroup&gt;
+&lt;/Project&gt;</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверка связей</h3><p>Целевая платформа net10.0-windows и UseWPF=true.</p></section></li></ol><div class="actions"></div></article><article id="ref-2" class="chapter"><header class="doc-head"><p class="section-id">Справочник 2</p><h2>Исходная версия: полный файл App.xaml для сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>App.xaml</h3><pre><code>&lt;Application x:Class=&quot;ServiceDeskWpf.App&quot;
+             xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;&gt;
+  &lt;Application.Resources /&gt;
+&lt;/Application&gt;</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверка связей</h3><p>Имя ServiceDeskWpf.App совпадает с кодом приложения.</p></section></li></ol><div class="actions"></div></article><article id="ref-3" class="chapter"><header class="doc-head"><p class="section-id">Справочник 3</p><h2>Исходная версия: полный файл App.xaml.cs для сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>App.xaml.cs</h3><pre><code>using System.Windows;
+using System.Globalization;
+
+namespace ServiceDeskWpf;
+
+public partial class App : Application
+{
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        base.OnStartup(e);
+        var args = e.Args.ToList();
+        var checkDate = new DateTime(2026, 10, 1);
+        int dateIndex = args.IndexOf(&quot;--date&quot;);
+        if (dateIndex &gt;= 0)
+        {
+            if (dateIndex + 1 &gt;= args.Count || !DateTime.TryParseExact(args[dateIndex + 1],
+                &quot;yyyy-MM-dd&quot;, CultureInfo.InvariantCulture, DateTimeStyles.None, out checkDate))
+            {
+                MessageBox.Show(&quot;Параметр --date требует дату yyyy-MM-dd&quot;, &quot;Ошибка даты&quot;);
+                Shutdown(2);
+                return;
+            }
+            args.RemoveRange(dateIndex, 2);
+        }
+        var runArgs = args.ToArray();
+        if (runArgs.Length == 1 &amp;&amp; runArgs[0] == &quot;--self-test&quot;)
+        {
+            var rows = TestData.Create(checkDate);
+            Console.WriteLine($&quot;test-records={rows.Count}; overdue={TestData.CountOverdue(rows, checkDate)}&quot;);
+            Shutdown();
+            return;
+        }
+        new MainWindow(runArgs.Length == 1 &amp;&amp; runArgs[0] == &quot;--demo&quot;, checkDate).Show();
+    }
+}</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверка связей</h3><p>Разбор параметра даты и запуск нужного MainWindow.</p></section></li></ol><div class="actions"></div></article><article id="ref-4" class="chapter"><header class="doc-head"><p class="section-id">Справочник 4</p><h2>Исходная версия: полный файл MainWindow.xaml для сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>MainWindow.xaml</h3><pre><code>&lt;Window x:Class=&quot;ServiceDeskWpf.MainWindow&quot;
+        xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+        xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+        Title=&quot;Сервисный журнал учебного центра&quot; Width=&quot;1040&quot; Height=&quot;610&quot; MinWidth=&quot;800&quot; MinHeight=&quot;480&quot;
+        Background=&quot;White&quot; FontFamily=&quot;Segoe UI&quot; FontSize=&quot;14&quot; Language=&quot;ru-RU&quot;&gt;
+  &lt;Window.Resources&gt;
+    &lt;Style TargetType=&quot;Button&quot;&gt;
+      &lt;Setter Property=&quot;Padding&quot; Value=&quot;14,8&quot; /&gt;
+      &lt;Setter Property=&quot;Margin&quot; Value=&quot;0,0,8,8&quot; /&gt;
+      &lt;Setter Property=&quot;MinHeight&quot; Value=&quot;36&quot; /&gt;
+    &lt;/Style&gt;
+  &lt;/Window.Resources&gt;
+  &lt;Grid Margin=&quot;20&quot;&gt;
+    &lt;Grid.RowDefinitions&gt;
+      &lt;RowDefinition Height=&quot;Auto&quot; /&gt;
+      &lt;RowDefinition Height=&quot;Auto&quot; /&gt;
+      &lt;RowDefinition Height=&quot;*&quot; /&gt;
+      &lt;RowDefinition Height=&quot;Auto&quot; /&gt;
+    &lt;/Grid.RowDefinitions&gt;
+    &lt;StackPanel Orientation=&quot;Horizontal&quot; Margin=&quot;0,0,0,16&quot;&gt;
+      &lt;TextBlock Text=&quot;Контрольная дата&quot; VerticalAlignment=&quot;Center&quot; Margin=&quot;0,0,12,0&quot; /&gt;
+      &lt;DatePicker x:Name=&quot;ControlDate&quot; Width=&quot;160&quot; SelectedDateFormat=&quot;Short&quot;
+                  SelectedDateChanged=&quot;ControlDate_Changed&quot; AutomationProperties.Name=&quot;Контрольная дата&quot; /&gt;
+    &lt;/StackPanel&gt;
+    &lt;WrapPanel Grid.Row=&quot;1&quot; Margin=&quot;0,0,0,8&quot;&gt;
+      &lt;Button Content=&quot;Тестовые данные&quot; Click=&quot;LoadTestData_Click&quot; /&gt;
+      &lt;Button Content=&quot;Просрочено&quot; Click=&quot;CountOverdue_Click&quot; /&gt;
+    &lt;/WrapPanel&gt;
+    &lt;DataGrid x:Name=&quot;TicketsGrid&quot; Grid.Row=&quot;2&quot; AutoGenerateColumns=&quot;False&quot; IsReadOnly=&quot;True&quot;
+              CanUserAddRows=&quot;False&quot; RowHeight=&quot;34&quot; HeadersVisibility=&quot;Column&quot; GridLinesVisibility=&quot;Horizontal&quot;&gt;
+      &lt;DataGrid.Columns&gt;
+        &lt;DataGridTextColumn Header=&quot;Id&quot; Binding=&quot;{Binding Id}&quot; Width=&quot;70&quot; /&gt;
+        &lt;DataGridTextColumn Header=&quot;Объект&quot; Binding=&quot;{Binding Item}&quot; Width=&quot;*&quot; /&gt;
+        &lt;DataGridTextColumn Header=&quot;Ответственный&quot; Binding=&quot;{Binding Owner}&quot; Width=&quot;*&quot; /&gt;
+        &lt;DataGridTextColumn Header=&quot;Срок&quot; Binding=&quot;{Binding Due, StringFormat=dd.MM.yyyy}&quot; Width=&quot;140&quot; /&gt;
+        &lt;DataGridTextColumn Header=&quot;Статус&quot; Binding=&quot;{Binding Status}&quot; Width=&quot;140&quot; /&gt;
+      &lt;/DataGrid.Columns&gt;
+    &lt;/DataGrid&gt;
+    &lt;TextBlock x:Name=&quot;StatusText&quot; Grid.Row=&quot;3&quot; Margin=&quot;0,16,0,0&quot; Text=&quot;Загрузить встроенные данные для первой проверки&quot; /&gt;
+  &lt;/Grid&gt;
+&lt;/Window&gt;</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверка связей</h3><p>Имена ControlDate, TicketsGrid, StatusText и обработчики Click совпадают с кодом.</p></section></li></ol><div class="actions"></div></article><article id="ref-5" class="chapter"><header class="doc-head"><p class="section-id">Справочник 5</p><h2>Исходная версия: полный файл MainWindow.xaml.cs для сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>MainWindow.xaml.cs</h3><pre><code>using System.Windows;
+
+namespace ServiceDeskWpf;
+
+internal record Ticket(int Id, string Item, string Owner, DateTime Due, string Status);
+
+internal static class TestData
+{
+    public static List&lt;Ticket&gt; Create(DateTime today) =&gt;
+    [
+        new Ticket(101, &quot;Проектор&quot;, &quot;Ирина&quot;, today.AddDays(-2), &quot;Открыта&quot;),
+        new Ticket(102, &quot;Ноутбук&quot;, &quot;Павел&quot;, today.AddDays(-1), &quot;Завершена&quot;)
+    ];
+
+    public static int CountOverdue(IEnumerable&lt;Ticket&gt; tickets, DateTime today) =&gt;
+        tickets.Count(t =&gt; t.Status != &quot;Завершена&quot; &amp;&amp; t.Due.Date &lt; today.Date);
+}
+
+public partial class MainWindow : Window
+{
+    private List&lt;Ticket&gt; tickets = new();
+    private DateTime CheckDate =&gt; ControlDate.SelectedDate!.Value.Date;
+
+    public MainWindow(bool showTestData = false, DateTime? checkDate = null)
+    {
+        InitializeComponent();
+        ControlDate.SelectedDate = checkDate ?? new DateTime(2026, 10, 1);
+        if (showTestData) Loaded += (_, _) =&gt; LoadTestData();
+    }
+
+    private void ControlDate_Changed(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+    {
+        if (ControlDate.SelectedDate is null)
+            ControlDate.SelectedDate = new DateTime(2026, 10, 1);
+    }
+
+    private void LoadTestData_Click(object sender, RoutedEventArgs e) =&gt; LoadTestData();
+
+    private void LoadTestData()
+    {
+        tickets = TestData.Create(CheckDate);
+        TicketsGrid.ItemsSource = tickets.ToList();
+        StatusText.Text = $&quot;Тестовых записей: {tickets.Count}&quot;;
+    }
+
+    private void CountOverdue_Click(object sender, RoutedEventArgs e) =&gt;
+        StatusText.Text = $&quot;Просрочено: {TestData.CountOverdue(tickets, CheckDate)}&quot;;
+}</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверка связей</h3><p>Список, встроенные записи, выбранная дата и обработчики образуют один согласованный файл.</p></section></li></ol><div class="actions"></div></article><article id="ref-6" class="chapter"><header class="doc-head"><p class="section-id">Справочник 6</p><h2>Исправленная версия: полный файл ServiceDesk-fixed.csproj для сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>ServiceDesk-fixed.csproj</h3><pre><code>&lt;Project Sdk=&quot;Microsoft.NET.Sdk&quot;&gt;
+  &lt;PropertyGroup&gt;
+    &lt;OutputType&gt;WinExe&lt;/OutputType&gt;
+    &lt;TargetFramework&gt;net10.0-windows&lt;/TargetFramework&gt;
+    &lt;UseWPF&gt;true&lt;/UseWPF&gt;
+    &lt;RootNamespace&gt;ServiceDeskWpf&lt;/RootNamespace&gt;
+    &lt;Nullable&gt;enable&lt;/Nullable&gt;
+    &lt;ImplicitUsings&gt;enable&lt;/ImplicitUsings&gt;
+  &lt;/PropertyGroup&gt;
+&lt;/Project&gt;</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверка связей</h3><p>Сопоставить файл с проектом образца.</p></section></li></ol><div class="actions"></div></article><article id="ref-7" class="chapter"><header class="doc-head"><p class="section-id">Справочник 7</p><h2>Исправленная версия: полный файл App.xaml для сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>App.xaml</h3><pre><code>&lt;Application x:Class=&quot;ServiceDeskWpf.App&quot;
+             xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;&gt;
+  &lt;Application.Resources /&gt;
+&lt;/Application&gt;</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверка связей</h3><p>Имя ServiceDeskWpf.App совпадает с кодом приложения.</p></section></li></ol><div class="actions"></div></article><article id="ref-8" class="chapter"><header class="doc-head"><p class="section-id">Справочник 8</p><h2>Исправленная версия: полный файл App.xaml.cs для сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>App.xaml.cs</h3><pre><code>using System.IO;
+using System.Windows;
+using System.Globalization;
+
+namespace ServiceDeskWpf;
+
+public partial class App : Application
+{
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        base.OnStartup(e);
+        var args = e.Args.ToList();
+        var checkDate = new DateTime(2026, 10, 1);
+        int dateIndex = args.IndexOf(&quot;--date&quot;);
+        if (dateIndex &gt;= 0)
+        {
+            if (dateIndex + 1 &gt;= args.Count || !DateTime.TryParseExact(args[dateIndex + 1],
+                &quot;yyyy-MM-dd&quot;, CultureInfo.InvariantCulture, DateTimeStyles.None, out checkDate))
+            {
+                MessageBox.Show(&quot;Параметр --date требует дату yyyy-MM-dd&quot;, &quot;Ошибка даты&quot;);
+                Shutdown(2);
+                return;
+            }
+            args.RemoveRange(dateIndex, 2);
+        }
+        var runArgs = args.ToArray();
+        if (runArgs.Length == 1 &amp;&amp; runArgs[0] == &quot;--test-built-in&quot;)
+        {
+            var rows = TestData.Create(checkDate);
+            Console.WriteLine($&quot;test-records={rows.Count}; overdue={CsvStore.CountOverdue(rows, checkDate)}&quot;);
+            Shutdown();
+            return;
+        }
+        if (runArgs.Length == 2 &amp;&amp; runArgs[0] == &quot;--self-test&quot;)
+        {
+            var result = CsvStore.Read(runArgs[1]);
+            var target = Path.GetTempFileName();
+            try
+            {
+                CsvStore.Write(target, result.Tickets);
+                var again = CsvStore.Read(target);
+                if (again.Warnings.Count != 0 || !result.Tickets.SequenceEqual(again.Tickets))
+                    throw new InvalidOperationException(&quot;Повторный импорт не совпал&quot;);
+                Console.WriteLine($&quot;tickets={result.Tickets.Count}; warnings={result.Warnings.Count}; overdue={CsvStore.CountOverdue(result.Tickets, checkDate)}&quot;);
+                foreach (var warning in result.Warnings) Console.WriteLine(warning);
+            }
+            finally { File.Delete(target); }
+            Shutdown();
+            return;
+        }
+        new MainWindow(runArgs.Length == 2 &amp;&amp; runArgs[0] == &quot;--demo&quot; ? runArgs[1] : null, checkDate).Show();
+    }
+}</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверка связей</h3><p>Разбор параметра даты и запуск нужного MainWindow.</p></section></li></ol><div class="actions"></div></article><article id="ref-9" class="chapter"><header class="doc-head"><p class="section-id">Справочник 9</p><h2>Исправленная версия: полный файл MainWindow.xaml для сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>MainWindow.xaml</h3><pre><code>&lt;Window x:Class=&quot;ServiceDeskWpf.MainWindow&quot;
+        xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+        xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+        Title=&quot;Сервисный журнал учебного центра&quot; Width=&quot;1040&quot; Height=&quot;610&quot; MinWidth=&quot;800&quot; MinHeight=&quot;480&quot;
+        Background=&quot;White&quot; FontFamily=&quot;Segoe UI&quot; FontSize=&quot;14&quot; Language=&quot;ru-RU&quot;&gt;
+  &lt;Window.Resources&gt;
+    &lt;Style TargetType=&quot;Button&quot;&gt;
+      &lt;Setter Property=&quot;Padding&quot; Value=&quot;14,8&quot; /&gt;
+      &lt;Setter Property=&quot;Margin&quot; Value=&quot;0,0,8,8&quot; /&gt;
+      &lt;Setter Property=&quot;MinHeight&quot; Value=&quot;36&quot; /&gt;
+    &lt;/Style&gt;
+  &lt;/Window.Resources&gt;
+  &lt;Grid Margin=&quot;20&quot;&gt;
+    &lt;Grid.RowDefinitions&gt;
+      &lt;RowDefinition Height=&quot;Auto&quot; /&gt;
+      &lt;RowDefinition Height=&quot;Auto&quot; /&gt;
+      &lt;RowDefinition Height=&quot;*&quot; /&gt;
+      &lt;RowDefinition Height=&quot;Auto&quot; /&gt;
+    &lt;/Grid.RowDefinitions&gt;
+    &lt;StackPanel Orientation=&quot;Horizontal&quot; Margin=&quot;0,0,0,16&quot;&gt;
+      &lt;TextBlock Text=&quot;Контрольная дата&quot; VerticalAlignment=&quot;Center&quot; Margin=&quot;0,0,12,0&quot; /&gt;
+      &lt;DatePicker x:Name=&quot;ControlDate&quot; Width=&quot;160&quot; SelectedDateFormat=&quot;Short&quot;
+                  SelectedDateChanged=&quot;ControlDate_Changed&quot; AutomationProperties.Name=&quot;Контрольная дата&quot; /&gt;
+      &lt;CheckBox x:Name=&quot;FlexibleHeader&quot; Content=&quot;Столбцы по именам (расширение)&quot; VerticalAlignment=&quot;Center&quot; Margin=&quot;24,0,0,0&quot; /&gt;
+    &lt;/StackPanel&gt;
+    &lt;WrapPanel Grid.Row=&quot;1&quot; Margin=&quot;0,0,0,8&quot;&gt;
+      &lt;Button Content=&quot;Тестовые данные&quot; Click=&quot;LoadTestData_Click&quot; /&gt;
+      &lt;Button Content=&quot;Открыть CSV&quot; Click=&quot;OpenCsv_Click&quot; /&gt;
+      &lt;Button Content=&quot;Экспорт CSV&quot; Click=&quot;SaveCsv_Click&quot; /&gt;
+      &lt;Button Content=&quot;Просрочено&quot; Click=&quot;CountOverdue_Click&quot; /&gt;
+      &lt;Button Content=&quot;Для оператора&quot; Click=&quot;SelectForOperator_Click&quot; /&gt;
+      &lt;Button Content=&quot;Все записи&quot; Click=&quot;ShowAll_Click&quot; /&gt;
+    &lt;/WrapPanel&gt;
+    &lt;DataGrid x:Name=&quot;TicketsGrid&quot; Grid.Row=&quot;2&quot; AutoGenerateColumns=&quot;False&quot; IsReadOnly=&quot;True&quot;
+              CanUserAddRows=&quot;False&quot; RowHeight=&quot;34&quot; HeadersVisibility=&quot;Column&quot; GridLinesVisibility=&quot;Horizontal&quot;&gt;
+      &lt;DataGrid.Columns&gt;
+        &lt;DataGridTextColumn Header=&quot;Id&quot; Binding=&quot;{Binding Id}&quot; Width=&quot;70&quot; /&gt;
+        &lt;DataGridTextColumn Header=&quot;Объект&quot; Binding=&quot;{Binding Item}&quot; Width=&quot;*&quot; /&gt;
+        &lt;DataGridTextColumn Header=&quot;Ответственный&quot; Binding=&quot;{Binding Owner}&quot; Width=&quot;*&quot; /&gt;
+        &lt;DataGridTextColumn Header=&quot;Срок&quot; Binding=&quot;{Binding Due, StringFormat=dd.MM.yyyy}&quot; Width=&quot;140&quot; /&gt;
+        &lt;DataGridTextColumn Header=&quot;Статус&quot; Binding=&quot;{Binding Status}&quot; Width=&quot;140&quot; /&gt;
+      &lt;/DataGrid.Columns&gt;
+    &lt;/DataGrid&gt;
+    &lt;TextBlock x:Name=&quot;StatusText&quot; Grid.Row=&quot;3&quot; Margin=&quot;0,16,0,0&quot; Text=&quot;Загрузить встроенные данные для первой проверки&quot; /&gt;
+  &lt;/Grid&gt;
+&lt;/Window&gt;</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверка связей</h3><p>Имена ControlDate, TicketsGrid, StatusText и обработчики Click совпадают с кодом.</p></section></li></ol><div class="actions"></div></article><article id="ref-10" class="chapter"><header class="doc-head"><p class="section-id">Справочник 10</p><h2>Исправленная версия: полный файл MainWindow.xaml.cs для сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>MainWindow.xaml.cs</h3><pre><code>using System.Globalization;
+using System.IO;
+using System.Text;
+using System.Windows;
+using Microsoft.Win32;
+
+namespace ServiceDeskWpf;
+
+internal record Ticket(int Id, string Item, string Owner, DateTime Due, string Status);
+internal record ReadResult(List&lt;Ticket&gt; Tickets, List&lt;string&gt; Warnings);
+
+internal static class TestData
+{
+    public static List&lt;Ticket&gt; Create(DateTime today) =&gt;
+    [
+        new Ticket(101, &quot;Проектор&quot;, &quot;Ирина&quot;, today.AddDays(-2), &quot;Открыта&quot;),
+        new Ticket(102, &quot;Ноутбук&quot;, &quot;Павел&quot;, today.AddDays(-1), &quot;Завершена&quot;)
+    ];
+
+    public static int CountOverdue(IEnumerable&lt;Ticket&gt; tickets, DateTime today) =&gt;
+        tickets.Count(t =&gt; t.Status != &quot;Завершена&quot; &amp;&amp; t.Due.Date &lt; today.Date);
+}
+
+internal static class CsvStore
+{
+    private const string Header = &quot;Id;Item;Owner;Due;Status&quot;;
+
+    public static ReadResult Read(string path)
+    {
+        var tickets = new List&lt;Ticket&gt;();
+        var warnings = new List&lt;string&gt;();
+        var lines = File.ReadAllLines(path, Encoding.UTF8);
+        if (lines.Length == 0 || lines[0].TrimStart(&#x27;\uFEFF&#x27;) != Header)
+            throw new InvalidDataException($&quot;Ожидается заголовок {Header}&quot;);
+        for (int index = 1; index &lt; lines.Length; index++)
+        {
+            if (string.IsNullOrWhiteSpace(lines[index])) continue;
+            var cells = lines[index].Split(&#x27;;&#x27;);
+            string? reason = null;
+            if (cells.Length != 5) reason = &quot;ожидается пять полей&quot;;
+            else if (!int.TryParse(cells[0], out _)) reason = &quot;неверный Id&quot;;
+            else if (string.IsNullOrWhiteSpace(cells[1]) || string.IsNullOrWhiteSpace(cells[2])) reason = &quot;пустое обязательное поле&quot;;
+            else if (!DateTime.TryParseExact(cells[3], &quot;dd.MM.yyyy&quot;, CultureInfo.InvariantCulture, DateTimeStyles.None, out _)) reason = &quot;неверная дата&quot;;
+            else if (cells[4] != &quot;Открыта&quot; &amp;&amp; cells[4] != &quot;Завершена&quot;) reason = &quot;неверный статус&quot;;
+            if (reason != null) { warnings.Add($&quot;Строка {index + 1}: {reason}&quot;); continue; }
+            tickets.Add(new Ticket(int.Parse(cells[0], CultureInfo.InvariantCulture), cells[1], cells[2],
+                DateTime.ParseExact(cells[3], &quot;dd.MM.yyyy&quot;, CultureInfo.InvariantCulture), cells[4]));
+        }
+        return new ReadResult(tickets, warnings);
+    }
+
+    public static void Write(string path, IEnumerable&lt;Ticket&gt; tickets)
+    {
+        var lines = new List&lt;string&gt; { Header };
+        foreach (var t in tickets)
+        {
+            if (new[] { t.Item, t.Owner, t.Status }.Any(value =&gt; value.Contains(&#x27;;&#x27;) || value.Contains(&#x27;\n&#x27;) || value.Contains(&#x27;\r&#x27;)))
+                throw new InvalidDataException(&quot;В поле нельзя использовать разделитель или перевод строки&quot;);
+            lines.Add($&quot;{t.Id};{t.Item};{t.Owner};{t.Due.ToString(&quot;dd.MM.yyyy&quot;, CultureInfo.InvariantCulture)};{t.Status}&quot;);
+        }
+        File.WriteAllLines(path, lines, Encoding.UTF8);
+    }
+
+    public static int CountOverdue(IEnumerable&lt;Ticket&gt; tickets, DateTime today) =&gt;
+        tickets.Count(t =&gt; t.Status != &quot;Завершена&quot; &amp;&amp; t.Due.Date &lt; today.Date);
+}
+
+internal static class OperatorView
+{
+    public static List&lt;Ticket&gt; Select(IEnumerable&lt;Ticket&gt; rows, DateTime today) =&gt;
+        rows.Where(t =&gt; t.Status == &quot;Открыта&quot; &amp;&amp; t.Due.Date &lt; today.Date)
+            .OrderBy(t =&gt; t.Due).ThenBy(t =&gt; t.Id).ToList();
+}
+
+public partial class MainWindow : Window
+{
+    private List&lt;Ticket&gt; tickets = new();
+    private DateTime CheckDate =&gt; ControlDate.SelectedDate!.Value.Date;
+
+    public MainWindow(string? demoPath = null, DateTime? checkDate = null)
+    {
+        InitializeComponent();
+        ControlDate.SelectedDate = checkDate ?? new DateTime(2026, 10, 1);
+        if (demoPath != null) Loaded += (_, _) =&gt;
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.ApplicationIdle,
+                new Action(() =&gt; LoadCsv(demoPath)));
+    }
+
+    private void ControlDate_Changed(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+    {
+        if (ControlDate.SelectedDate is null)
+            ControlDate.SelectedDate = new DateTime(2026, 10, 1);
+    }
+
+    private void LoadTestData_Click(object sender, RoutedEventArgs e) =&gt; LoadTestData();
+
+    private void LoadTestData()
+    {
+        tickets = TestData.Create(CheckDate);
+        TicketsGrid.ItemsSource = tickets.ToList();
+        StatusText.Text = $&quot;Тестовых записей: {tickets.Count}&quot;;
+    }
+
+    private void OpenCsv_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new OpenFileDialog { Filter = &quot;CSV (*.csv)|*.csv&quot; };
+        if (dialog.ShowDialog() == true) LoadCsv(dialog.FileName);
+    }
+
+    private void LoadCsv(string path)
+    {
+        try
+        {
+            var result = FlexibleHeader.IsChecked == true ? HeaderExchange.Read(path) : CsvStore.Read(path);
+            tickets = result.Tickets;
+            TicketsGrid.ItemsSource = tickets.ToList();
+            StatusText.Text = $&quot;Загружено: {tickets.Count}; пропущено: {result.Warnings.Count}&quot;;
+            if (result.Warnings.Count &gt; 0)
+                MessageBox.Show(string.Join(Environment.NewLine, result.Warnings), &quot;Предупреждения импорта&quot;);
+        }
+        catch (Exception ex) { MessageBox.Show(ex.Message, &quot;Ошибка импорта&quot;); }
+    }
+
+    private void SaveCsv_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new SaveFileDialog { Filter = &quot;CSV (*.csv)|*.csv&quot;, FileName = &quot;export.csv&quot; };
+        if (dialog.ShowDialog() != true) return;
+        try { CsvStore.Write(dialog.FileName, tickets); StatusText.Text = &quot;Файл сохранён&quot;; }
+        catch (Exception ex) { MessageBox.Show(ex.Message, &quot;Ошибка экспорта&quot;); }
+    }
+
+    private void SelectForOperator_Click(object sender, RoutedEventArgs e)
+    {
+        var selected = OperatorView.Select(tickets, CheckDate);
+        TicketsGrid.ItemsSource = selected;
+        StatusText.Text = $&quot;Для оператора: {selected.Count}; всего: {tickets.Count}&quot;;
+    }
+
+    private void ShowAll_Click(object sender, RoutedEventArgs e)
+    {
+        TicketsGrid.ItemsSource = tickets.ToList();
+        StatusText.Text = $&quot;Все записи: {tickets.Count}&quot;;
+    }
+
+    private void CountOverdue_Click(object sender, RoutedEventArgs e) =&gt;
+        StatusText.Text = $&quot;Просрочено: {CsvStore.CountOverdue(tickets, CheckDate)}&quot;;
+}</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверка связей</h3><p>Список, встроенные записи, выбранная дата и обработчики образуют один согласованный файл.</p></section></li></ol><div class="actions"></div></article><article id="ref-11" class="chapter"><header class="doc-head"><p class="section-id">Справочник 11</p><h2>Расширение: полный файл HeaderExchange.cs для сверки</h2></header><ol class="steps"><li class="step"><span class="number" aria-hidden="true">01</span><section class="card"><h3>HeaderExchange.cs</h3><pre><code>using System.IO;
+using System.Text;
+
+namespace ServiceDeskWpf;
+
+// Optional extension: adapt the order, then reuse the accepted strict reader.
+internal static class HeaderExchange
+{
+    private static readonly string[] Columns = [&quot;Id&quot;, &quot;Item&quot;, &quot;Owner&quot;, &quot;Due&quot;, &quot;Status&quot;];
+
+    public static ReadResult Read(string path)
+    {
+        var lines = File.ReadAllLines(path, Encoding.UTF8);
+        if (lines.Length == 0) throw new InvalidDataException(&quot;Отсутствует заголовок CSV&quot;);
+        var header = lines[0].TrimStart(&#x27;\uFEFF&#x27;).Split(&#x27;;&#x27;);
+        if (header.Length != Columns.Length || header.Distinct(StringComparer.Ordinal).Count() != Columns.Length ||
+            Columns.Any(name =&gt; !header.Contains(name, StringComparer.Ordinal)))
+            throw new InvalidDataException(&quot;Заголовок должен содержать Id, Item, Owner, Due, Status по одному разу&quot;);
+        var order = Columns.Select(name =&gt; Array.IndexOf(header, name)).ToArray();
+        var normalized = new List&lt;string&gt; { string.Join(&#x27;;&#x27;, Columns) };
+        foreach (var line in lines.Skip(1))
+        {
+            if (string.IsNullOrWhiteSpace(line)) { normalized.Add(line); continue; }
+            var cells = line.Split(&#x27;;&#x27;);
+            // Preserve malformed rows and physical line numbers for the existing validator.
+            normalized.Add(cells.Length == Columns.Length ? string.Join(&#x27;;&#x27;, order.Select(i =&gt; cells[i])) : line);
+        }
+        var temp = Path.GetTempFileName();
+        try { File.WriteAllLines(temp, normalized, Encoding.UTF8); return CsvStore.Read(temp); }
+        finally { File.Delete(temp); }
+    }
+}</code></pre></section></li><li class="step"><span class="number" aria-hidden="true">02</span><section class="card"><h3>Проверка связей</h3><p>Адаптер добавляется только при выполнении расширенного маршрута. CsvStore.Read и CsvStore.Write основного контракта сохраняются.</p></section></li></ol><div class="actions"></div></article></main></body></html>

@@ -75,20 +75,28 @@ internal static class OperatorView
 public partial class MainWindow : Window
 {
     private List<Ticket> tickets = new();
+    private DateTime CheckDate => ControlDate.SelectedDate!.Value.Date;
 
-    public MainWindow(string? demoPath = null)
+    public MainWindow(string? demoPath = null, DateTime? checkDate = null)
     {
         InitializeComponent();
+        ControlDate.SelectedDate = checkDate ?? new DateTime(2026, 10, 1);
         if (demoPath != null) Loaded += (_, _) =>
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.ApplicationIdle,
                 new Action(() => LoadCsv(demoPath)));
+    }
+
+    private void ControlDate_Changed(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+    {
+        if (ControlDate.SelectedDate is null)
+            ControlDate.SelectedDate = new DateTime(2026, 10, 1);
     }
 
     private void LoadTestData_Click(object sender, RoutedEventArgs e) => LoadTestData();
 
     private void LoadTestData()
     {
-        tickets = TestData.Create(DateTime.Today);
+        tickets = TestData.Create(CheckDate);
         TicketsGrid.ItemsSource = tickets.ToList();
         StatusText.Text = $"Тестовых записей: {tickets.Count}";
     }
@@ -103,7 +111,7 @@ public partial class MainWindow : Window
     {
         try
         {
-            var result = CsvStore.Read(path);
+            var result = FlexibleHeader.IsChecked == true ? HeaderExchange.Read(path) : CsvStore.Read(path);
             tickets = result.Tickets;
             TicketsGrid.ItemsSource = tickets.ToList();
             StatusText.Text = $"Загружено: {tickets.Count}; пропущено: {result.Warnings.Count}";
@@ -123,7 +131,7 @@ public partial class MainWindow : Window
 
     private void SelectForOperator_Click(object sender, RoutedEventArgs e)
     {
-        var selected = OperatorView.Select(tickets, DateTime.Today);
+        var selected = OperatorView.Select(tickets, CheckDate);
         TicketsGrid.ItemsSource = selected;
         StatusText.Text = $"Для оператора: {selected.Count}; всего: {tickets.Count}";
     }
@@ -135,5 +143,5 @@ public partial class MainWindow : Window
     }
 
     private void CountOverdue_Click(object sender, RoutedEventArgs e) =>
-        StatusText.Text = $"Просрочено: {CsvStore.CountOverdue(tickets, DateTime.Today)}";
+        StatusText.Text = $"Просрочено: {CsvStore.CountOverdue(tickets, CheckDate)}";
 }

@@ -19,22 +19,30 @@ internal static class TestData
 public partial class MainWindow : Window
 {
     private List<Ticket> tickets = new();
+    private DateTime CheckDate => ControlDate.SelectedDate!.Value.Date;
 
-    public MainWindow(bool showTestData = false)
+    public MainWindow(bool showTestData = false, DateTime? checkDate = null)
     {
         InitializeComponent();
+        ControlDate.SelectedDate = checkDate ?? new DateTime(2026, 10, 1);
         if (showTestData) Loaded += (_, _) => LoadTestData();
+    }
+
+    private void ControlDate_Changed(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+    {
+        if (ControlDate.SelectedDate is null)
+            ControlDate.SelectedDate = new DateTime(2026, 10, 1);
     }
 
     private void LoadTestData_Click(object sender, RoutedEventArgs e) => LoadTestData();
 
     private void LoadTestData()
     {
-        tickets = TestData.Create(DateTime.Today);
+        tickets = TestData.Create(CheckDate);
         TicketsGrid.ItemsSource = tickets.ToList();
         StatusText.Text = $"Тестовых записей: {tickets.Count}";
     }
 
     private void CountOverdue_Click(object sender, RoutedEventArgs e) =>
-        StatusText.Text = $"Просрочено: {TestData.CountOverdue(tickets, DateTime.Today)}";
+        StatusText.Text = $"Просрочено: {TestData.CountOverdue(tickets, CheckDate)}";
 }

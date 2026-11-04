@@ -1,2 +1,3 @@
 # Preserve the exact bytes hashed by site/manifest.json.
 * -text
+*.pdf binary

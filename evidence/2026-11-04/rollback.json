@@ -1,0 +1,8 @@
+{
+  "restored_csv_sha256": "ed569842f59da3b9453654d32612f292c0c49204e8154551710e532c7553b085",
+  "backup_csv_sha256": "ed569842f59da3b9453654d32612f292c0c49204e8154551710e532c7553b085",
+  "equal": true,
+  "previous_app": "ServiceDesk-csv-draft",
+  "data_source": "stands/data/demo-valid.csv",
+  "screenshot": "rollback.jpg"
+}
