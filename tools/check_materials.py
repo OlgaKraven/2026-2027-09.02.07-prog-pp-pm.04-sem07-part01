@@ -63,7 +63,9 @@ for s in c['guide']+c['reference']:
   if b['kind']!='code':continue
   if 'code' in b:value=b['code']
   else:
-   lines=(R/files[b['code_file']]).read_text(encoding='utf-8').splitlines();a,z=b.get('code_lines',[0,len(lines)]);value='\n'.join(lines[a:z])
+   lines=(R/files[b['code_file']]).read_text(encoding='utf-8').splitlines();a,z=b.get('code_lines',[0,len(lines)])
+   assert 0<=a<z<=len(lines),(b['code_file'],a,z,len(lines))
+   value='\n'.join(lines[a:z])
   expected.append(value)
 assert '\n'.join(pages[(site/'print-method.html').resolve()].codes)=='\n'.join(expected)
 for name in ['assignment','guide']:
